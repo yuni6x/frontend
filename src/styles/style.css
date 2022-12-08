@@ -1,0 +1,122 @@
+body {
+  background-color: #dbc201;
+}
+
+.search-bar {
+  width: 20%;
+}
+
+.nav-width {
+  width: 140px;
+  left: 90%;
+  bottom: 80px;
+}
+
+.input-width2, .input-btn2 {
+  width: 40%;
+}
+
+.input-height {
+  height: 150px;
+}
+
+.image {
+  width: 30px;
+}
+
+.detail-width {
+  width: 80%;
+}
+
+.width {
+  height: 200px;
+}
+
+
+
+
+
+
+
+
+/* Login dan Register Style */
+.login-card{
+  width: 70%;
+  height: 80%;
+  background-color: rgb(255, 255, 255,0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+}
+
+.input-title {
+  margin: 10px 0;
+  font-size: 80px;
+  color: #15506D;
+  font-weight: 700;
+}
+
+.login-row {
+  width: 710px;
+  font-size: 16px;
+}
+
+.login-row button {
+  width: 45%;
+}
+
+.icon-btn {
+  font-size: 38px;
+  font-weight: 600;
+}
+
+.login-row input {
+  width: 35%;
+  background-color: rgb(255, 255, 255,0);
+  font-weight: 500;
+}
+
+.login-row input:focus {
+  background-color: rgb(255, 255, 255,0);
+}
+
+.google-btn {
+  background-color: #DD4C39;
+  font-weight: 500;
+}
+
+.facebook-btn {
+  background-color: #1877F2;
+  font-weight: 500;
+}
+
+.input-btn {
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #15506D;
+  color: white;
+  width: 610px;
+  height: 48px;
+}
+
+.daftar-btn {
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #15506D;
+  width: 200px;
+  height: 48px;
+}
+
+.login-text {
+  font-weight: 500;
+}
+
+.mention {
+  line-height: 0;
+}
+
+.mention p {
+  font-size: 11px;
+}
+
+.mention span {
+  font-weight: 700;
+}
