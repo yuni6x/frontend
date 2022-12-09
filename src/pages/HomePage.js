@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import loading from '../images/Loading.gif';
-import { getAllTukang } from '../utils/apis';
+
+// API
+import { getAllWorker } from '../utils/apis';
+
+// Component
+import WorkerList from '../components/home/workerList';
 
 function HomePage() {
 
@@ -8,20 +13,32 @@ function HomePage() {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    getAllTukang().then((data) => {
-        console.log(data);
-      setData(data);
-      setLoad(false)
-    });
+    let role = JSON.parse(localStorage.getItem('auth')).role;
+    console.log(role);
+    if (isPenyewa(role)) {
+        getAllWorker().then((data) => {
+            console.log(data);
+            setData(data);
+            setLoad(false)
+        })
+    }
   }, []);
+
+  const isPenyewa = (role) => {
+    return role === 'Penyewa' ? true : false;
+  }
 
 
   return (
-    <section>
+    <section className='home-page'>
       {load
           ? <img className='position-absolute top-50 start-50 translate-middle' src={loading} alt='loading'/>
 
-          : <p>Home Page</p>
+          : <>
+            <h1>Find Your Worker here</h1>
+            <WorkerList data = {data} />
+          </>
+          
       }
       {console.log(data)}
     </section>

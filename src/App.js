@@ -6,6 +6,7 @@ import loading from "./images/Loading.gif";
 
 // pages
 import HomePage from "./pages/HomePage";
+import DetailPage from "./pages/DetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -51,6 +52,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/home" element={<HomePage />} />
+              <Route path="/worker/:id" element={<DetailPage />} />
               <Route path='*' element={<NotFoundPage />} />
             </Routes>
             : <Routes>

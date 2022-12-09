@@ -1,15 +1,26 @@
+html{
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
   background-color: #dbc201;
+  /* min-height: 100%; */
+  height: 100vh;
 }
 
-.search-bar {
-  width: 20%;
+#root{
+  /* height: 100%; */
+  flex: 1;
 }
 
-.nav-width {
-  width: 140px;
-  left: 90%;
-  bottom: 80px;
+.App{
+  height: 100%;
+}
+
+main{
+  height: 100%;
 }
 
 .input-width2, .input-btn2 {
@@ -20,22 +31,9 @@ body {
   height: 150px;
 }
 
-.image {
-  width: 30px;
-}
-
-.detail-width {
-  width: 80%;
-}
-
 .width {
   height: 200px;
 }
-
-
-
-
-
 
 
 
@@ -119,4 +117,105 @@ body {
 
 .mention span {
   font-weight: 700;
+}
+
+
+
+/* Home Page Style */
+.home-page{
+  background-color: white;
+  padding: 30px;
+  height: 100%;
+}
+
+.home-page > h1{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.worker-list{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.worker-item{
+  padding: 5px;
+  background: transparent;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
+  border-radius: 15px;
+}
+
+.worker-item__img > img{
+  display: block;
+  margin: auto;
+  height: 150px;
+}
+
+
+/* Detail Worker Page Style */
+.detail-page{
+  padding: 20px;
+  background-color: white;
+  height: 100%;
+}
+
+.worker-detail{
+  display: flex;
+  flex-direction: row;
+  margin-top: 80px;
+}
+
+.worker-detail > .card-header{
+  margin-right: 30px;
+  padding: 15px;
+}
+
+.worker-detail > .card-header > img{
+  display: block;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 35px;
+}
+
+.worker-detail > .card-header> .card-header__address{
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.worker-detail > .card-body{
+  padding: 15px;
+  flex: 1;
+}
+
+.card-body__rating{
+  font-size: 24px;
+}
+
+.card-body__button{
+  margin-top: 30px;
+}
+
+.card-body__button > a > button{
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px;
+  margin-right: 50px;
+  font-size: 20px;
+}
+
+.card-body__button__chat{
+  color: white;
+  font-weight: 500;
+  background-color: #25d366;
+  border: 2px solid #25d366;
+  border-radius: 10px;
+}
+
+.card-body__button__order{
+  color: white;
+  font-weight: 500;
+  background-color: #0d6efd;
+  border: 2px solid #0d6efd;
+  border-radius: 10px;
 }

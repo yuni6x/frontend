@@ -56,7 +56,7 @@ async function register({ fullName, email, password, phoneNumber, img, kecamatan
   return { error: false };
 }
 
-async function getAllTukang(){
+async function getAllWorker(){
   const response = await fetchWithToken(`${BASE_URL}/tukang`);
 
   const responseJson = await response.json();
@@ -76,6 +76,6 @@ export {
   putAccessToken,
   login,
   register,
-  getAllTukang,
+  getAllWorker,
   getUserById,
 };

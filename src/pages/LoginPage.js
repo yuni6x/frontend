@@ -13,8 +13,6 @@ import LoginInput from '../components/signIn/LoginInput';
 function LoginPage({ loginSuccess }) {
 
   async function onLogin({ email, password }) {
-    console.log(email);
-    console.log(password);
     const { error, data } = await login({ email, password });
 
     if (!error) {
