@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import WorkerItem from './workerItem';
 
 function WorkerList({data}) {
@@ -17,12 +16,5 @@ function WorkerList({data}) {
     </div>
   );
 }
-
-// WorkerList.propTypes = {
-//   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   unArchive: PropTypes.func,
-//   onArchive: PropTypes.func,
-//   onDelete: PropTypes.func.isRequired,
-// }
 
 export default WorkerList;

@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 // api
-import { getUserById, isTokenExpired } from '../utils/apis';
+import { isTokenExpired, getOrderPenyewa } from '../utils/apis';
 
 // component and page
-import WorkerDetail from '../components/detail/workerDetail';
+import OrderPenyewa from '../components/order/orderPenyewa';
 import NotFoundPage from '../pages/NotFoundPage';
 
 // assets
 import loading from '../images/Loading.gif';
 
-function DetailPage({logout}){
-    const [worker,setWorker] = useState(null);
+function YourOrderPage({logout}){
+    const [order,setOrder] = useState(null);
     const [load, setLoad] = useState(true);
-    const { id } = useParams();
   
     useEffect(() => {
-      getUserById(id).then(({error , data}) => {
+      getOrderPenyewa().then(({error , data}) => {
         if (error) {
           Swal.fire({
             icon: 'error',
@@ -26,27 +24,22 @@ function DetailPage({logout}){
           })
           if(isTokenExpired(error)) logout()  
         } 
-        setWorker(data);
+        setOrder(data);
         setLoad(false)
       });
-    }, [id, logout]);
+    }, [logout]);
   
   
     if(load){
       return <img className='position-absolute top-50 start-50 translate-middle' src={loading} alt='loading'/>
     }
     else{
-      if(worker){
         return (
-          <section className='detail-page'>
-            <WorkerDetail {...worker} />
+          <section className='your-order-page'>
+            <OrderPenyewa {...order} />
           </section>
         );
-      }
-      else{
-        return <NotFoundPage />
-      }
     }
   }
 
-export default DetailPage;
+export default YourOrderPage;

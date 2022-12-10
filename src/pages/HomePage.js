@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import loading from '../images/Loading.gif';
 import Swal from 'sweetalert2';
 // API
@@ -44,8 +45,9 @@ function HomePage({logout}) {
 
           : <>
             <h1>Find Your Worker here</h1>
-            <WorkerList data = {data} />
-          </>
+            <Link to={'/your-order'}><h2>Your Order</h2></Link>
+              <WorkerList data = {data} />
+            </>
       }
       {console.log(data)}
     </section>

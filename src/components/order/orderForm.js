@@ -1,20 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import State from '../../hooks/State';
 
 function OrderForm({workerId, penyewaId, order}) {
     const [biayaHarian, onBiayaHarianChangeHandler] = State('');
+    const [permintaan, onPermintaanChangeHandler] = State('');
     const [biayaPembangunan, onBiayaPembangunanChangeHandler] = State('');
     const [estimasiWaktu, onEstimasiWaktuChangeHandler] = State('');
 
 
     function onSubmitHandler(event){
-        console.log(biayaHarian)
-        console.log(estimasiWaktu)
-        console.log(biayaPembangunan)
         event.preventDefault();
         order({
-            biayaHarian, biayaPembangunan, estimasiWaktu, workerId
+            permintaan, biayaHarian, biayaPembangunan, estimasiWaktu, workerId
         })
     }
 
@@ -25,6 +22,10 @@ function OrderForm({workerId, penyewaId, order}) {
             <form onSubmit={onSubmitHandler}>
                 <input type={'hidden'} id='workerId' value={workerId} />
                 <input type={'hidden'} id='penyewaId' value={penyewaId} />
+                <div className="mb-3">
+                    <label htmlFor="permintaan" className="form-label">Permintaan</label>
+                    <input type="text" className="form-control" id="permintaan" value={permintaan} onChange={onPermintaanChangeHandler}/>
+                </div>
                 <div className="mb-3">
                     <label htmlFor="biaya-harian" className="form-label">Biaya Harian</label>
                     <input type="number" min={0} className="form-control" id="biaya-harian" value={biayaHarian} onChange={onBiayaHarianChangeHandler}/>
@@ -42,16 +43,5 @@ function OrderForm({workerId, penyewaId, order}) {
     </div>
     );
 }
-
-// OrderForm.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   createdAt: PropTypes.string.isRequired,
-//   body: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired,
-//   archived: PropTypes.bool.isRequired,
-//   unArchive: PropTypes.func,
-//   onArchive: PropTypes.func,
-//   onDelete: PropTypes.func.isRequired,
-// };
 
 export default OrderForm;

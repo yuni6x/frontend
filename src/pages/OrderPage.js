@@ -39,10 +39,10 @@ function OrderPage({logout}) {
   }, [logout,id]);
 
 
-  async function onOrder({biayaHarian, biayaPembangunan, estimasiWaktu, workerId}) {
+  async function onOrder({permintaan, biayaHarian, biayaPembangunan, estimasiWaktu, workerId}) {
     console.log(biayaPembangunan)
     setLoad(true)
-    const { error, feedback } = await postOrder({ biayaHarian, biayaPembangunan, estimasiWaktu, workerId });
+    const { error, feedback } = await postOrder({ permintaan, biayaHarian, biayaPembangunan, estimasiWaktu, workerId });
     setLoad(false)
     if (error) {
       Swal.fire({
