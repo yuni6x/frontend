@@ -63,9 +63,12 @@ function App() {
                 <Route path="*" element={<LoginPage loginSuccess={onLoginSuccess} />} />
                 <Route path="/register" element={<RegisterPage />} />
               </Routes>
-            }
+        }
       </main>
-      <footer>C22-193. Hosting API and DB by Niagahoster</footer>
+      { authedUser ? 
+        <footer>C22-193. Hosting API by Niagahoster and DB by FreeSQLdatabase.com</footer> : ''
+      }
+      
     </div>
   );
 }

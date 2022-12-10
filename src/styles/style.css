@@ -269,3 +269,10 @@ footer{
   margin-bottom: 30px;
 }
 
+
+@media screen and (max-width: 800px) {
+  .worker-list{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
