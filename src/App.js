@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { putAccessToken } from "./utils/apis";
@@ -10,6 +10,7 @@ import DetailPage from "./pages/DetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   const [authedUser, setAuthedUser] = useState(
@@ -17,13 +18,13 @@ function App() {
   );
   const [initializing, setInitializing] = useState(false);
 
-  async function onLoginSuccess({ accessToken, fullName, role }) {
+  async function onLoginSuccess({ accessToken, id, fullName, role }) {
     setInitializing(true);
     putAccessToken(accessToken);
     setAuthedUser(() => {
       return { fullName, role };
     });
-    localStorage.setItem("auth", JSON.stringify({ fullName, role }));
+    localStorage.setItem("auth", JSON.stringify({ id, fullName, role }));
     setInitializing(false);
   }
 
@@ -31,7 +32,7 @@ function App() {
     setAuthedUser(() => {
       return null;
     });
-    localStorage.removeItem("auth");
+    localStorage.clear();
   };
 
   if (initializing) {
@@ -50,10 +51,11 @@ function App() {
       <main>
        {authedUser ?
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/home" element={<HomePage />} />
-              <Route path="/worker/:id" element={<DetailPage />} />
-              <Route path='*' element={<NotFoundPage />} />
+              <Route path="/" element={<HomePage logout={onLogout} />} />
+              <Route path="/home" element={<HomePage logout={onLogout} />} />
+              <Route path="/worker/:id" element={<DetailPage logout={onLogout} />} />
+              <Route path="/order/:id" element={<OrderPage logout={onLogout} />} />
+              <Route path='*' element={<NotFoundPage logout={onLogout} />} />
             </Routes>
             : <Routes>
                 <Route path="*" element={<LoginPage loginSuccess={onLoginSuccess} />} />

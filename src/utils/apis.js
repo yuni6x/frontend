@@ -8,6 +8,10 @@ function putAccessToken(accessToken) {
   return localStorage.setItem('accessToken', accessToken);
 }
 
+function isTokenExpired(message){
+  return message.toLowerCase().includes('expired') ? true : false
+}
+
 async function fetchWithToken(url, options = {}) {
   return fetch(url, {
     ...options,
@@ -30,8 +34,7 @@ async function login({ email, password }) {
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
-    alert(responseJson.message);
-    return { error: true, data: null };
+    return { error: responseJson.message, data: null };
   }
 
   return { error: false, data: responseJson.data };
@@ -60,15 +63,44 @@ async function getAllWorker(){
   const response = await fetchWithToken(`${BASE_URL}/tukang`);
 
   const responseJson = await response.json();
-  console.log(responseJson.data)
-  return responseJson.data;
+  console.log(responseJson.message)
+
+  if (responseJson.status !== 'success') {     
+    return { error: responseJson.message, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
 }
 
 async function getUserById(id){
   const response = await fetchWithToken(`${BASE_URL}/user/${id}`);
 
   const responseJson = await response.json();
-  return responseJson.data;
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
+async function postOrder({workerId, biayaHarian, biayaPembangunan, estimasiWaktu}){
+  console.log(biayaPembangunan)
+  const response = await fetchWithToken(`${BASE_URL}/penyewa/order/${workerId}`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ biayaHarian, biayaPembangunan, estimasiWaktu })
+  })
+
+  const responseJson = await response.json();
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, feedback: null };
+  }
+
+  return { error: false, feedback: responseJson.message };
 }
 
 export {
@@ -78,4 +110,6 @@ export {
   register,
   getAllWorker,
   getUserById,
+  isTokenExpired,
+  postOrder
 };
