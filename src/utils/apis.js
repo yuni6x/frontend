@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3005';
+const BASE_URL = 'https://api.upik.dev';
 
 function getAccessToken() {
   return localStorage.getItem('accessToken');
@@ -52,8 +52,7 @@ async function register({ fullName, email, password, phoneNumber, img, kecamatan
   const responseJson = await response.json();
 
   if (responseJson.status !== 'success') {
-    alert(responseJson.message);
-    return { error: true };
+    return { error: responseJson.message };
   }
 
   return { error: false };

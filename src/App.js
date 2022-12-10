@@ -65,7 +65,7 @@ function App() {
               </Routes>
             }
       </main>
-      
+      <footer>C22-193. Hosting API and DB by Niagahoster</footer>
     </div>
   );
 }

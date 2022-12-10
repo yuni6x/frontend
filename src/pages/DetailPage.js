@@ -24,9 +24,12 @@ function DetailPage({logout}){
             title: 'Oops...',
             text: error,
           })
-          if(isTokenExpired(error)) logout()  
-        } 
-        setWorker(data);
+          if(isTokenExpired(error)) logout() 
+           
+        } else{
+          setWorker(data);
+        }
+        
         setLoad(false)
       });
     }, [id, logout]);

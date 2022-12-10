@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 function WorkerItem({ id, fullName, img, kota, rating }) {
  return (
@@ -16,16 +15,5 @@ function WorkerItem({ id, fullName, img, kota, rating }) {
    </div>
  );
 }
-
-// WorkerItem.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   createdAt: PropTypes.string.isRequired,
-//   body: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired,
-//   archived: PropTypes.bool.isRequired,
-//   unArchive: PropTypes.func,
-//   onArchive: PropTypes.func,
-//   onDelete: PropTypes.func.isRequired,
-// };
 
 export default WorkerItem;

@@ -1,8 +1,9 @@
 // React
-import React from 'react';
+import React , { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+import loading from '../images/Loading.gif';
+import Swal from 'sweetalert2';
 // API
 import { login } from '../utils/apis';
 
@@ -11,13 +12,33 @@ import LoginInput from '../components/signIn/LoginInput';
 
 
 function LoginPage({ loginSuccess }) {
+  const [load, setLoad] = useState(false);
 
   async function onLogin({ email, password }) {
+    setLoad(true)
     const { error, data } = await login({ email, password });
+    setLoad(false)
 
-    if (!error) {
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+    } else{
       loginSuccess(data);
     }
+  }
+
+
+  if (load) {
+    return (
+      <img
+        className="position-absolute top-50 start-50 translate-middle"
+        src={loading}
+        alt="loading"
+      />
+    );
   }
 
   return (

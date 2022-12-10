@@ -5,13 +5,12 @@ import { isTokenExpired, getOrderPenyewa } from '../utils/apis';
 
 // component and page
 import OrderPenyewa from '../components/order/orderPenyewa';
-import NotFoundPage from '../pages/NotFoundPage';
 
 // assets
 import loading from '../images/Loading.gif';
 
 function YourOrderPage({logout}){
-    const [order,setOrder] = useState(null);
+    const [orders,setOrder] = useState(null);
     const [load, setLoad] = useState(true);
   
     useEffect(() => {
@@ -22,10 +21,13 @@ function YourOrderPage({logout}){
             title: 'Oops...',
             text: error,
           })
-          if(isTokenExpired(error)) logout()  
-        } 
-        setOrder(data);
-        setLoad(false)
+          if(isTokenExpired(error)) logout() 
+
+        } else{
+            console.log(data)
+            setOrder(data);
+            setLoad(false)
+        }  
       });
     }, [logout]);
   
@@ -36,7 +38,7 @@ function YourOrderPage({logout}){
     else{
         return (
           <section className='your-order-page'>
-            <OrderPenyewa {...order} />
+            <OrderPenyewa orders={orders}/>
           </section>
         );
     }
