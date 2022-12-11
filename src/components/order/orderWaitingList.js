@@ -14,9 +14,9 @@ function OrderWaitingList({orders, accept, reject}){
                                 <h6>Penyewa : {order.Penyewa.fullName}</h6>
                             </div>
                             <div className="col">
-                                <p>biaya harian : {order.biayaHarian}</p>
-                                <p>biaya pembangunan : {order.biayaPembangunan}</p>
-                                <p>Estimasi waktu : {order.estimasiWaktu} hari</p>
+                                <p>biaya harian : Rp. {order.biayaHarian}</p>
+                                <p>biaya pembangunan : Rp. {order.biayaPembangunan}</p>
+                                <p>Estimasi waktu : Rp. {order.estimasiWaktu} hari</p>
                             </div>
                             <div className="col">
                                 <button id={order.id} onClick={accept} className="btn btn-success">Accept</button>

@@ -161,13 +161,14 @@ footer{
   height: 150px;
 }
 
-.waiting-list-order{
+.waiting-list-order, .on-progress-order{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
-.waiting-list-order__card{
+.waiting-list-order__card, .on-progress-order__card{
+  border: 1px solid black;
   padding: 10px;
 }
 

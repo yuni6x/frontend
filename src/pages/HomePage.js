@@ -67,7 +67,7 @@ function HomePage({logout}) {
         } 
       })
     }
-  }, [logout]);
+  }, [logout, waitingListOrder]);
 
   const isPenyewa = (role) => {
     return role === 'Penyewa' ? true : false;
@@ -101,6 +101,20 @@ function HomePage({logout}) {
     }
   }
 
+  async function onDone(event){
+    const {error} = await changeOrderStatus({id: event.target.id, status: 'done'});
+
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+      // Check if token is expired
+      if(isTokenExpired(error)) logout();   
+    }
+  }
+
 
   if(load){
     return <img className='position-absolute top-50 start-50 translate-middle' src={loading} alt='loading'/>
@@ -120,7 +134,7 @@ function HomePage({logout}) {
       return (
         <section className='home-page'>
           <OrderWaitingList accept={onAccept} reject={onReject} orders = {waitingListOrder} />
-          <OrderOnProgress orders = {onProgressOrder} />  
+          <OrderOnProgress done={onDone} orders = {onProgressOrder} />  
           <OrderDone orders ={doneOrder} />
         </section>
       )
