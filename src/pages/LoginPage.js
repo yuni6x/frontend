@@ -1,7 +1,7 @@
 // React
 import React , { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import loading from '../images/Loading.gif';
 import Swal from 'sweetalert2';
 // API
@@ -13,6 +13,7 @@ import LoginInput from '../components/signIn/LoginInput';
 
 function LoginPage({ loginSuccess }) {
   const [load, setLoad] = useState(false);
+  
 
   async function onLogin({ email, password }) {
     setLoad(true)

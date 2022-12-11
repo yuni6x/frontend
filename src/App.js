@@ -13,11 +13,15 @@ import RegisterPage from "./pages/RegisterPage";
 import OrderPage from "./pages/OrderPage";
 import YourOrderPage from "./pages/YourOrderPage";
 
+// component
+import Navigation from "./components/navigation/navigation";
+
 function App() {
   const [authedUser, setAuthedUser] = useState(
     localStorage.getItem("auth") || null
   );
   const [initializing, setInitializing] = useState(false);
+  const [hidden, setHidden] = useState(false)
 
   async function onLoginSuccess({ accessToken, id, fullName, role }) {
     setInitializing(true);
@@ -36,6 +40,10 @@ function App() {
     localStorage.clear();
   };
 
+  const toggleHidden = () => {
+    setHidden(!hidden)
+  };
+
   if (initializing) {
     return (
       <img
@@ -48,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <header style={{ backgroundColor: "salmon" }}>Navigation</header>
+      <header><Navigation auth={authedUser} logout={onLogout} hidden={hidden} toggleHidden={toggleHidden} /></header>
       <main>
        {authedUser ?
             <Routes>

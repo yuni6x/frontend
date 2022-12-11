@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {FaStar} from "react-icons/fa";
-import PropTypes from 'prop-types';
 
 function WorkerDetail({ id, fullName, phoneNumber, img, kecamatan, kelurahan, kota, provinsi, rating }) {
   return (
@@ -25,11 +24,5 @@ function WorkerDetail({ id, fullName, phoneNumber, img, kecamatan, kelurahan, ko
     </div>
   );
 }
-
-// WorkerDetail.propTypes = {
-//     title: PropTypes.string.isRequired,
-//     createdAt: PropTypes.string.isRequired,
-//     body: PropTypes.string.isRequired,
-// };
 
 export default WorkerDetail;

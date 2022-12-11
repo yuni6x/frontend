@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 // api
 import { isTokenExpired, getOrderPenyewa, putRatingOrder } from '../utils/apis';
@@ -12,8 +13,13 @@ import loading from '../images/Loading.gif';
 function YourOrderPage({logout}){
     const [orders,setOrder] = useState(null);
     const [load, setLoad] = useState(true);
+    const navigate = useNavigate();
   
     useEffect(() => {
+      let role = JSON.parse(localStorage.getItem('auth')).role;
+
+      if(!isPenyewa(role)) navigate('/');
+
       getOrderPenyewa().then(({error , data}) => {
         if (error) {
           Swal.fire({
@@ -30,6 +36,10 @@ function YourOrderPage({logout}){
         }  
       });
     }, [logout]);
+
+    const isPenyewa = (role) => {
+      return role === 'Penyewa' ? true : false;
+    }
 
     async function giveRating(event) {
       const { value: text } = await Swal.fire({
