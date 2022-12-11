@@ -1,6 +1,7 @@
 // React
 import React from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // API
 import { register } from '../utils/apis';
@@ -18,7 +19,14 @@ function RegisterPage() {
 
   async function onRegisterHandler(user) {
     const { error } = await register(user);
-    if (!error) {
+    
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+    } else {
       navigate('/');
     }
   }
@@ -30,11 +38,7 @@ function RegisterPage() {
       <p id='background-text' className='login-text text-center mt-3'>Sudah punya akun?</p>
       <button className='daftar-btn mx-auto border-0 rounded-pill'><Link to="/" style={{ color: '#FFF', textDecoration: 'none' }}>Masuk</Link></button>
 
-      <div className='mention fixed-bottom position-absolute mt-2 top-100 start-50 translate-middle'>
-        <p>Dengan melanjutkan, Anda menyetujui <span>Persyaratan</span> <br/>
-        <span>Layanan</span> Find Ideal Worker dan mengakui bahwa Anda telah membaca<br/>
-        <span>Kebijakan Privasi</span> kami</p>
-      </div>
+      
     </section>
   )
 }

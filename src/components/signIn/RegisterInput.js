@@ -30,7 +30,7 @@ class RegisterInput extends React.Component {
   onFullNameChange(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        fullName: event.target.value,
       };
     });
   }
@@ -54,7 +54,7 @@ class RegisterInput extends React.Component {
   onPhoneNumberChange(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        phoneNumber: event.target.value,
       };
     });
   }
@@ -62,7 +62,7 @@ class RegisterInput extends React.Component {
   onProvinsiChange(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        provinsi: event.target.value,
       };
     });
   }
@@ -70,7 +70,7 @@ class RegisterInput extends React.Component {
   onKotaChange(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        kota: event.target.value,
       };
     });
   }
@@ -78,7 +78,7 @@ class RegisterInput extends React.Component {
   onKecamatanChange(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        kecamatan: event.target.value,
       };
     });
   }
@@ -86,7 +86,7 @@ class RegisterInput extends React.Component {
   onKelurahanChange(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        kelurahan: event.target.value,
       };
     });
   }
@@ -102,7 +102,9 @@ class RegisterInput extends React.Component {
       provinsi: this.state.provinsi,
       kota: this.state.kota,
       kecamatan: this.state.kecamatan,
-      kelurahan: this.state.kelurahan,    
+      kelurahan: this.state.kelurahan,  
+      img: 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png',
+      id_role: 2
     });
   }
 
@@ -113,7 +115,7 @@ class RegisterInput extends React.Component {
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Name" value={this.state.fullName} onChange={this.onFullNameChange} />
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="email" placeholder='Email' value={this.state.email} onChange={this.onEmailChange} />
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="password" placeholder='Password' autoComplete='current-password' value={this.state.password} onChange={this.onPasswordChange} />
-          <input className='form-control mt-4 mb-5 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Number" value={this.state.phoneNumber} onChange={this.onPhoneNumberChange} />
+          <input className='form-control mt-4 mb-5 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="number" placeholder="Phone Number" value={this.state.phoneNumber} onChange={this.onPhoneNumberChange} />
 
           <input className='form-control mt-5 mb-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Provinsi" value={this.state.provinsi} onChange={this.onProvinsiChange} />
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kota" value={this.state.kota} onChange={this.onKotaChange} />

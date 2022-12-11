@@ -55,11 +55,7 @@ function LoginPage({ loginSuccess }) {
       <p className='login-text text-center'>Belum punya akun?</p>
       <button className='daftar-btn mx-auto border-0 rounded-pill'><Link to="/register" style={{ color: '#FFF', textDecoration: 'none' }}>Buat Akun</Link></button>
 
-      <div className='mention fixed-bottom mt-2 top-100 start-50 translate-middle'>
-        <p>Dengan melanjutkan, Anda menyetujui <span>Persyaratan</span> <br/>
-        <span>Layanan</span> Find Ideal Worker dan mengakui bahwa Anda telah membaca<br/>
-        <span>Kebijakan Privasi</span> kami</p>
-      </div>
+      
     </section>
   );
 }

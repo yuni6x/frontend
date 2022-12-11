@@ -14,7 +14,11 @@ function Navigation({logout, hidden, toggleHidden, auth}) {
                     auth ? 
                         <>
                             <li><Link to="/home">Home</Link></li>
-                            <li><Link to="/your-order">Your Order</Link></li>
+                            {
+                                JSON.parse(localStorage.getItem('auth')).role === 'Penyewa' 
+                                ? <li><Link to="/your-order">Your Order</Link></li>
+                                : ''
+                            }
                             <li><button className="logout" onClick={logout} type="button">Logout</button></li>
                         </>
                         
