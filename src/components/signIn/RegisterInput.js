@@ -6,18 +6,28 @@ class RegisterInput extends React.Component {
     super(props)
 
     this.state = {
-      name: '',
+      fullName: '',
       email: '',
       password: '',
+      phoneNumber: '',
+      provinsi: '',
+      kota: '',
+      kecamatan: '',
+      kelurahan: '',
     }
 
-    this.onNameChange = this.onNameChange.bind(this);
+    this.onFullNameChange = this.onFullNameChange.bind(this);
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onPhoneNumberChange = this.onPhoneNumberChange.bind(this);
+    this.onProvinsiChange = this.onProvinsiChange.bind(this);
+    this.onKotaChange = this.onKotaChange.bind(this);
+    this.onKecamatanChange = this.onKecamatanChange.bind(this);
+    this.onKelurahanChange = this.onKelurahanChange.bind(this); 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
-  onNameChange(event) {
+  onFullNameChange(event) {
     this.setState(() => {
       return {
         name: event.target.value,
@@ -41,33 +51,75 @@ class RegisterInput extends React.Component {
     })
   }
 
+  onPhoneNumberChange(event) {
+    this.setState(() => {
+      return {
+        name: event.target.value,
+      };
+    });
+  }
+
+  onProvinsiChange(event) {
+    this.setState(() => {
+      return {
+        name: event.target.value,
+      };
+    });
+  }
+
+  onKotaChange(event) {
+    this.setState(() => {
+      return {
+        name: event.target.value,
+      };
+    });
+  }
+
+  onKecamatanChange(event) {
+    this.setState(() => {
+      return {
+        name: event.target.value,
+      };
+    });
+  }
+  
+  onKelurahanChange(event) {
+    this.setState(() => {
+      return {
+        name: event.target.value,
+      };
+    });
+  }
+  
   onSubmitHandler(event) {
     event.preventDefault();
 
     this.props.register({
-      name: this.state.name,
+      fullName: this.state.fullName,
       email: this.state.email,
       password: this.state.password,
+      phoneNumber: this.state.phoneNumber,
+      provinsi: this.state.provinsi,
+      kota: this.state.kota,
+      kecamatan: this.state.kecamatan,
+      kelurahan: this.state.kelurahan,    
     });
   }
 
   render() {
     return (
-      <form className='note-input text-center' onSubmit={this.onSubmitHandler}>
+      <form className='note-input' onSubmit={this.onSubmitHandler}>
+        <div className='login-row mt-2'>
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Name" value={this.state.fullName} onChange={this.onFullNameChange} />
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="email" placeholder='Email' value={this.state.email} onChange={this.onEmailChange} />
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="password" placeholder='Password' autoComplete='current-password' value={this.state.password} onChange={this.onPasswordChange} />
+          <input className='form-control mt-4 mb-5 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Number" value={this.state.phoneNumber} onChange={this.onPhoneNumberChange} />
 
-        <div className='login-row row row-cols-2 gap-3 mx-auto my-4 '>
-          <input className='col my-auto ms-auto me-4 form-control shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Name" value={this.state.name} onChange={this.onNameChange} />
-          <button className='google-btn col text-light border-0 row me-5 rounded-pill row'>
-            <p className='col-1 my-auto icon-btn'>G</p>
-            <p className='col-10 my-auto'>Lanjutkan dengan Google</p>
-          </button>
-          <input className='col my-auto ms-auto me-4 form-control shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="email" placeholder='Email' value={this.state.email} onChange={this.onEmailChange} />
-          <div className='col'></div>
-          <input className='col my-auto ms-auto me-4 form-control shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="password" placeholder='Password' autoComplete='current-password' value={this.state.password} onChange={this.onPasswordChange} />
-          <button className='facebook-btn col text-light border-0 row me-5 rounded-pill'>
-            <p className='col-1 my-auto icon-btn'>f</p>
-            <p className='col-10 my-auto'>Lanjutkan dengan Facebook</p>
-          </button>
+          <input className='form-control mt-5 mb-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Provinsi" value={this.state.provinsi} onChange={this.onProvinsiChange} />
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kota" value={this.state.kota} onChange={this.onKotaChange} />
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kecamatan" value={this.state.kecamatan} onChange={this.onKecamatanChange} />
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kelurahan" value={this.state.kelurahan} onChange={this.onKelurahanChange} />
+
         </div>
         <button className='input-btn border-0 rounded-pill'>Daftar</button>
       </form>
