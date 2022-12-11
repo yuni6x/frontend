@@ -240,10 +240,14 @@ nav>ul>li {
 }
 
 .worker-item{
-  padding: 5px;
   background: transparent;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
   border-radius: 15px;
+}
+
+.worker-item__body{
+  padding: 15px;
+
 }
 
 .worker-item__img > img{

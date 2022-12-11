@@ -1,7 +1,7 @@
 // React
 import React , { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loading from '../images/Loading.gif';
 import Swal from 'sweetalert2';
 // API
@@ -13,7 +13,7 @@ import LoginInput from '../components/signIn/LoginInput';
 
 function LoginPage({ loginSuccess }) {
   const [load, setLoad] = useState(false);
-  
+  const navigate = useNavigate();
 
   async function onLogin({ email, password }) {
     setLoad(true)
@@ -27,7 +27,8 @@ function LoginPage({ loginSuccess }) {
         text: error,
       })
     } else{
-      loginSuccess(data);
+      await loginSuccess(data);
+      navigate('/');
     }
   }
 
