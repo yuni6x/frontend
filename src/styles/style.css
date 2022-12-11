@@ -538,3 +538,116 @@ nav>ul>li {
   }
 
 }
+
+/* landing dan Bantuan Style */
+.bg-color {
+  background-color: #15506D;
+}
+
+.base h1 {
+  font-size: 3rem;
+}
+
+.base .fs {
+  font-size: 1.8rem;
+}
+
+.base p {
+  font-size: 1.5rem;
+}
+
+.base img {
+  width: 600px;
+  height: 700px;
+  object-fit:cover;
+}
+
+.contact {
+  line-height: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .base img {
+    width: 300px;
+    height: 400px;
+  }
+
+  .base h1 {
+    font-size: 2rem;
+  }
+
+  .base .fs {
+    font-size: 1.6rem;
+  }
+
+  .base p {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .base img {
+    width: 240px;
+    height: 340px;
+  }
+
+  .base h1 {
+    font-size: 1.6rem;
+  }
+
+  .base .fs {
+    font-size: 16px;
+  }
+
+  .base p {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .base img {
+    width: 180px;
+    height: 240px;
+  }
+
+  .base h1 {
+    font-size: 16px;
+  }
+
+  .base .fs {
+    font-size: 13px;
+  }
+
+  .base p {
+    font-size: 0.6rem;
+  }
+
+  .contact {
+    line-height: 5px;
+  }
+  
+  
+}
+
+@media only screen and (max-width: 400px) {
+  .base img {
+    width: 120px;
+    height: 180px;
+  }
+
+  .base h1 {
+    font-size: 3vw;
+  }
+
+  .base .fs {
+    font-size: 2.5vw;
+  }
+
+  .base p {
+    font-size: 2vw;
+  }
+
+  .contact {
+    line-height: 2px;
+  }
+}
