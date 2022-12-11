@@ -21,7 +21,11 @@ function OrderDone({orders}) {
                             </div>
                             <div className="col">
                                 <h1>DONE</h1>
-                                <h2>{order.rating ? `Rating: ${order.rating} ${<FaStar style={{ color: "gold", marginBottom: "5px" }}/>}`  : ''}</h2>
+                                {
+                                    order.rating ?
+                                    <h2>Rating: {order.rating} {<FaStar style={{ color: "gold", marginBottom: "5px" }}/>}</h2>
+                                    : ''
+                                }
                             </div>
                         </div>
                     </div>

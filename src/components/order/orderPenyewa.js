@@ -1,44 +1,41 @@
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 
-function OrderPenyewa({orders}) {
+function OrderPenyewa({orders, giveRating}) {
 
     return (
-    <div className='order-penyewa'>
-        <h1>Your Order</h1>
-        <table className='table'>
-            <thead>
-                <tr>
-                    <th scope="col">Permintaan</th>
-                    <th scope="col">Biaya Harian</th>
-                    <th scope="col">Biaya Pembangunan (bahan)</th>
-                    <th scope="col">Estimasi Waktu</th>
-                    <th scope='col'>Pekerja</th>
-                    <th scope='col'>Status</th>
-                    <th scope='col'>Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-        {
+        <div className='order-penyewa'>
+            <h1>Your Order</h1>
+            {
             orders.length > 0 
-            ? orders.map((order) => ( 
-                    <tr key={order.id}>
-                        <td>{order.permintaan}</td>
-                        <td>Rp {order.biayaHarian}</td>
-                        <td>Rp {order.biayaPembangunan}</td>
-                        <td>{order.estimasiWaktu} hari</td>
-                        <td>{order.Pekerja.fullName}</td>
-                        <th>{order.status === '' ? 
-                        'menunggu persetujuan' : order.status
-                        }</th>
-                        <th>{order.rating}</th>
-                    </tr>
+                ? orders.map((order) => (
+                    <div className='order-penyewa__card card' key={order.id}>
+                        <div className='order-penyewa__card__body'>
+                            <h3>{order.permintaan}</h3>
+                            <p>Pekerja : {order.Pekerja?.fullName}</p>
+                            <p>Biaya Harian: Rp {order.biayaHarian}</p>
+                            <p>Biaya Pembangunan : Rp {order.biayaPembangunan}</p>
+                            <p>Estimasi Waktu : {order.estimasiWaktu} Hari</p>
+                        </div>
+                        <div className='order-penyewa__card__footer'>
+                            <h3 className='text-capitalize'>{order.status === '' ? 'Menunggu Persetujuan' : order.status}</h3>
+                            <div>{order.rating ? 
+                                    <h3>Rating: {order.rating} {<FaStar style={{ color: "gold", marginBottom: "5px" }}/>}</h3>
+                                    : 
+                                    <div>{order.status === 'done' ? 
+                                        <button id={order.id} className='btn btn-primary' onClick={giveRating}>Berikan Rating</button> 
+                                        : ''}
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 ))
             : ''
-        }
-            </tbody>
-        </table>
-    </div>
-    );
+            
+            }
+        </div>
+        );
 }
 
 export default OrderPenyewa;

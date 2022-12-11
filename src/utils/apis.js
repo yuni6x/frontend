@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.upik.dev';
+const BASE_URL = 'https://api.findidealworker.my.id';
 
 function getAccessToken() {
   return localStorage.getItem('accessToken');
@@ -147,6 +147,25 @@ async function changeOrderStatus({id,status}) {
   return { error: false, data: responseJson.data };
 }
 
+async function putRatingOrder({id,rating}) {
+  const response = await fetchWithToken(`${BASE_URL}/penyewa/order/${id}`,{
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ rating })
+  })
+  const responseJson = await response.json();
+
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, feedback: null };
+  }
+
+  return { error: false, feedback: responseJson.message };
+
+}
+
 export {
   getAccessToken,
   putAccessToken,
@@ -158,5 +177,6 @@ export {
   postOrder,
   getOrderPenyewa,
   getOrderWorker,
-  changeOrderStatus
+  changeOrderStatus,
+  putRatingOrder
 };

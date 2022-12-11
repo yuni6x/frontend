@@ -59,23 +59,22 @@ function HomePage({logout}) {
           setWaitingListOrder(data.filter((d) => d.status === ""));
           setOnProgressOrder(data.filter((d) => d.status === 'on progress'));
           setDoneOrder(data.filter((d) => d.status === 'done'))
-          console.log(waitingListOrder);
-          console.log(onProgressOrder);
-          console.log(doneOrder);
           
           setLoad(false)
         } 
       })
     }
-  }, [logout, waitingListOrder]);
+  }, [logout]);
 
   const isPenyewa = (role) => {
     return role === 'Penyewa' ? true : false;
   }
 
   async function onAccept(event){
+    setLoad(true)
     const {error} = await changeOrderStatus({id: event.target.id, status: 'on progress'});
-    
+    setLoad(false)
+
     if (error) {
       Swal.fire({
         icon: 'error',
@@ -84,11 +83,15 @@ function HomePage({logout}) {
       })
       // Check if token is expired
       if(isTokenExpired(error)) logout();   
+    } else {
+       
     }
   }
 
   async function onReject(event){
-    const {error} = await changeOrderStatus({id: event.target.id, status: 'rejected'});
+    setLoad(true)
+    const {error} = await changeOrderStatus({id: event.target.id, status: 'Rejected'});
+    setLoad(false)
 
     if (error) {
       Swal.fire({
@@ -102,8 +105,10 @@ function HomePage({logout}) {
   }
 
   async function onDone(event){
+    setLoad(true)
     const {error} = await changeOrderStatus({id: event.target.id, status: 'done'});
-
+    setLoad(false)
+    
     if (error) {
       Swal.fire({
         icon: 'error',
@@ -113,6 +118,8 @@ function HomePage({logout}) {
       // Check if token is expired
       if(isTokenExpired(error)) logout();   
     }
+        
+    
   }
 
 
@@ -130,7 +137,7 @@ function HomePage({logout}) {
       </section>
     )
   } else { // Render as role 'tukang'
-    if (data.length > 0) {
+    if (waitingListOrder.length > 0 || onProgressOrder.length > 0 || doneOrder.length > 0) {
       return (
         <section className='home-page'>
           <OrderWaitingList accept={onAccept} reject={onReject} orders = {waitingListOrder} />
@@ -138,7 +145,13 @@ function HomePage({logout}) {
           <OrderDone orders ={doneOrder} />
         </section>
       )
-    } else {<h3>You doesnt received any order yet</h3>}
+    } else {
+      return (
+      <section className='home-page'>
+          <h1>You doesnt received any order yet</h1>
+      </section>
+      )
+    }
   }
 }
 
