@@ -10,8 +10,11 @@ import DetailPage from "./pages/DetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import RegisterWorkerPage from "./pages/RegisterWorkerPage";
 import OrderPage from "./pages/OrderPage";
 import YourOrderPage from "./pages/YourOrderPage";
+import BantuanPage from "./pages/BantuanPage";
+import LandingPage from "./pages/LandingPage";
 
 // component
 import Navigation from "./components/navigation/navigation";
@@ -61,6 +64,8 @@ function App() {
        {authedUser ?
             <Routes>
               <Route path="/" element={<HomePage logout={onLogout} />} />
+              <Route path="/about" element={<LandingPage />} />
+              <Route path="/help" element={<BantuanPage />} />
               <Route path="/home" element={<HomePage logout={onLogout} />} />
               <Route path="/your-order" element={<YourOrderPage logout={onLogout} />} />
               <Route path="/worker/:id" element={<DetailPage logout={onLogout} />} />
@@ -70,6 +75,9 @@ function App() {
             : <Routes>
                 <Route path="*" element={<LoginPage loginSuccess={onLoginSuccess} />} />
                 <Route path="/register" element={<RegisterPage />} />
+                <Route path="/register-worker" element={<RegisterWorkerPage />} />
+                <Route path="/about" element={<LandingPage />} />
+                <Route path="/help" element={<BantuanPage />} />
               </Routes>
         }
       </main>

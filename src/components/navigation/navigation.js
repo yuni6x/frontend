@@ -19,11 +19,15 @@ function Navigation({logout, hidden, toggleHidden, auth}) {
                                 ? <li><Link to="/your-order">Your Order</Link></li>
                                 : ''
                             }
+                            <li><Link to="/about">About us</Link></li>
+                            <li><Link to="/help">Help</Link></li>
                             <li><button className="logout" onClick={logout} type="button">Logout</button></li>
                         </>
                         
                     :
                         <>
+                            <li><Link to="/about">About us</Link></li>
+                            <li><Link to="/help">Help</Link></li>
                             <li><Link to="/register">Daftar</Link></li>
                             <li><Link to="/login">Login</Link></li>
                         </>

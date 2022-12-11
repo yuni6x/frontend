@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
   return (
@@ -40,7 +41,7 @@ function LandingPage() {
           </div>
         </div>
         <div className='col col-6 my-auto'>
-          <img className='rounded' src="https://www.kindpng.com/picc/m/159-1596327_construction-worker-hd-png-download.png"/>
+          <img className='rounded' alt='worker' src="https://www.kindpng.com/picc/m/159-1596327_construction-worker-hd-png-download.png"/>
         </div>
       </section>
 
@@ -50,7 +51,7 @@ function LandingPage() {
         </div>
         <div className='col col-6 my-auto'>
           <h1 className='mt-5'>Tertarik untuk bergabung bersama kami? </h1>
-          <button type="button" class="btn btn-outline-warning w-100"><h2 className='fs'>Daftar</h2></button>
+          <Link to={'/register-worker'}><button type="button" class="btn btn-outline-warning w-100"><h2 className='fs'>Daftar</h2></button></Link>
         </div>
       </section>
       </main>
