@@ -134,6 +134,7 @@ footer{
   background-color: white;
   padding: 30px;
   height: 100%;
+  width: 100%;
 }
 
 .home-page > h1{
@@ -158,6 +159,20 @@ footer{
   display: block;
   margin: auto;
   height: 150px;
+}
+
+.waiting-list-order{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.waiting-list-order__card{
+  padding: 10px;
+}
+
+.waiting-list-order button{
+  margin: 7px;
 }
 
 
@@ -270,7 +285,7 @@ footer{
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .worker-list{
     grid-template-columns: repeat(2, 1fr);
   }

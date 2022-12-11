@@ -1,8 +1,8 @@
 import React from "react";
 
-function OrderOnProgress({order}) {
+function OrderOnProgress({orders}) {
     return (
-        order.length > 0 ? 
+        orders.length > 0 ? 
             <h3>Order on Progress</h3> 
         : ''
         

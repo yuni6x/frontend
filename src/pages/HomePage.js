@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import loading from '../images/Loading.gif';
 import Swal from 'sweetalert2';
 // API
-import { getAllWorker, isTokenExpired, getOrderWorker } from '../utils/apis';
+import { getAllWorker, isTokenExpired, getOrderWorker, changeOrderStatus } from '../utils/apis';
 
 // Component
 import WorkerList from '../components/home/workerList';
@@ -73,6 +73,34 @@ function HomePage({logout}) {
     return role === 'Penyewa' ? true : false;
   }
 
+  async function onAccept(event){
+    const {error} = await changeOrderStatus({id: event.target.id, status: 'on progress'});
+    
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+      // Check if token is expired
+      if(isTokenExpired(error)) logout();   
+    }
+  }
+
+  async function onReject(event){
+    const {error} = await changeOrderStatus({id: event.target.id, status: 'rejected'});
+
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+      // Check if token is expired
+      if(isTokenExpired(error)) logout();   
+    }
+  }
+
 
   if(load){
     return <img className='position-absolute top-50 start-50 translate-middle' src={loading} alt='loading'/>
@@ -91,9 +119,9 @@ function HomePage({logout}) {
     if (data.length > 0) {
       return (
         <section className='home-page'>
-          <OrderWaitingList order={waitingListOrder} />
-          <OrderOnProgress order = {onProgressOrder} />  
-          <OrderDone order={doneOrder} />
+          <OrderWaitingList accept={onAccept} reject={onReject} orders = {waitingListOrder} />
+          <OrderOnProgress orders = {onProgressOrder} />  
+          <OrderDone orders ={doneOrder} />
         </section>
       )
     } else {<h3>You doesnt received any order yet</h3>}

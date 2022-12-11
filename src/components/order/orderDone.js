@@ -1,8 +1,8 @@
 import React from "react"; 
 
-function OrderDone({order}) {
+function OrderDone({orders}) {
     return(
-        order.length > 0 ? <h2>Order done</h2> : ''
+        orders.length > 0 ? <h2>Order done</h2> : ''
     )
 }
 
