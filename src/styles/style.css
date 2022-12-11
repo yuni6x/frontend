@@ -421,3 +421,120 @@ nav>ul>li {
   }
 }
 
+.body-color {
+  background-color: white;
+}
+
+/* Login dan Register Style */
+.body-yellow {
+  background-color: #dbc201;
+}
+
+.login-card{
+  width: 70%;
+  height: 80%;
+  background-color: rgb(255, 255, 255,0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+}
+
+.register-card{
+  width: 70%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding-bottom: 5%;
+  
+  background-color: rgb(255, 255, 255,0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+}
+
+.input-title {
+  margin: 10px 0;
+  font-size: 4rem;
+  color: #15506D;
+  font-weight: 700;
+}
+
+.login-row {
+  font-size: 16px;
+}
+
+.login-row input {
+  width: 50%;
+  background-color: rgb(255, 255, 255,0);
+  font-weight: 500;
+}
+
+.login-row label {
+  font-size: 24px;
+}
+
+.login-row input:focus {
+  background-color: rgb(255, 255, 255,0);
+}
+
+.input-btn {
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #15506D;
+  color: white;
+  width: 50%;
+  height: 48px;
+}
+
+.daftar-btn {
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #15506D;
+  width: 30%;
+  height: 48px;
+}
+
+.login-text {
+  font-weight: 500;
+}
+
+.mention {
+  width: 100%;
+}
+
+.mention p {
+  font-size: 11px;
+}
+
+.mention span {
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 768px) {
+  .input-title {
+    font-size: 2.5rem;
+  }
+
+  .login-row input {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .input-title {
+    font-size: 1.8rem;
+  }
+
+  .login-row label {
+    font-size: 18px;
+  }
+
+  .input-btn, .daftar-btn, .login-text {
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .daftar-btn {
+    width: 40%;
+  }
+
+  .mention p {
+    font-size: 8px;
+  }
+
+}
