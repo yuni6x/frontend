@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import loading from '../images/Loading.gif';
 import Swal from 'sweetalert2';
 // API
@@ -18,52 +18,63 @@ function HomePage({logout}) {
   const [onProgressOrder,setOnProgressOrder] = useState(null); // array of object type
   const [doneOrder,setDoneOrder] = useState(null); // array of object type
 
+  const gettingAllWorker = useCallback(() => {
+    getAllWorker().then(({data, error}) => {
+      if (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error,
+        })
+        // Check if token is expired
+        if(isTokenExpired(error)) logout();   
+
+      } else {
+        console.log(data);
+        setData(data);
+        setLoad(false)
+      } 
+    })
+  }, [getAllWorker])
+
+  const gettingOrderWorker = useCallback(() => {
+    getOrderWorker().then(({data, error}) => {
+      if (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error,
+        })
+        // Check if token is expired
+        if(isTokenExpired(error)) logout();   
+
+      } else {
+        setData(data)
+        console.log(data);
+        setWaitingListOrder(data.filter((d) => d.status === null));
+        setOnProgressOrder(data.filter((d) => d.status === 'on progress'));
+        setDoneOrder(data.filter((d) => d.status === 'done'))
+        console.log(waitingListOrder);
+        console.log(data);
+        setLoad(false)
+      } 
+    })
+  }, [getOrderWorker])
+
 
   useEffect(() => {
     let role = JSON.parse(localStorage.getItem('auth')).role;
     console.log(role);
     if (isPenyewa(role)) {
       setPenyewa(true);
-        getAllWorker().then(({data, error}) => {
-          if (error) {
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: error,
-            })
-            // Check if token is expired
-            if(isTokenExpired(error)) logout();   
+      gettingAllWorker()
+    } 
 
-          } else {
-            console.log(data);
-            setData(data);
-            setLoad(false)
-          } 
-        })
-    } else{
+    else{
       setPenyewa(false);
-      getOrderWorker().then(({data, error}) => {
-        if (error) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error,
-          })
-          // Check if token is expired
-          if(isTokenExpired(error)) logout();   
-
-        } else {
-          setData(data)
-          console.log(data);
-          setWaitingListOrder(data.filter((d) => d.status === ""));
-          setOnProgressOrder(data.filter((d) => d.status === 'on progress'));
-          setDoneOrder(data.filter((d) => d.status === 'done'))
-          
-          setLoad(false)
-        } 
-      })
+      gettingOrderWorker()
     }
-  }, [logout]);
+  }, [gettingOrderWorker, gettingAllWorker]);
 
   const isPenyewa = (role) => {
     return role === 'Penyewa' ? true : false;
@@ -83,7 +94,7 @@ function HomePage({logout}) {
       // Check if token is expired
       if(isTokenExpired(error)) logout();   
     } else {
-       
+       gettingOrderWorker()
     }
   }
 
@@ -100,6 +111,8 @@ function HomePage({logout}) {
       })
       // Check if token is expired
       if(isTokenExpired(error)) logout();   
+    } else{
+      gettingOrderWorker()
     }
   }
 
@@ -116,6 +129,8 @@ function HomePage({logout}) {
       })
       // Check if token is expired
       if(isTokenExpired(error)) logout();   
+    } else{
+      gettingOrderWorker()
     }
   }
 
@@ -132,6 +147,9 @@ function HomePage({logout}) {
       </section>
     )
   } else { // Render as role 'tukang'
+    console.log(waitingListOrder.length)
+    console.log(onProgressOrder.length)
+    console.log(doneOrder.length)
     if (waitingListOrder.length > 0 || onProgressOrder.length > 0 || doneOrder.length > 0) {
       return (
         <section className='home-page'>

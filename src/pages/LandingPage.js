@@ -18,7 +18,7 @@ function LandingPage() {
 
       <section className='base row px-5 pt-5 pb-5'>
         <div className='col col-6 my-auto'>
-          <img className='rounded' src="https://www.kindpng.com/picc/m/47-475665_electrician-life-insurance-hero-hard-hat-hd-png.png"/>
+          <img className='rounded' alt='worker' src="https://www.kindpng.com/picc/m/47-475665_electrician-life-insurance-hero-hard-hat-hd-png.png"/>
         </div>
         <div className='col col-6 my-auto'>
           <h1>Visi dan Misi</h1>
@@ -47,11 +47,11 @@ function LandingPage() {
 
       <section className='base row px-5 pt-5 pb-5'>
         <div className='col col-6 my-auto'>
-          <img className='rounded' src="https://www.kindpng.com/picc/m/47-475801_industrail-engineer-png-image-engineer-png-transparent-png.png"/>
+          <img className='rounded' alt='worker' src="https://www.kindpng.com/picc/m/47-475801_industrail-engineer-png-image-engineer-png-transparent-png.png"/>
         </div>
         <div className='col col-6 my-auto'>
           <h1 className='mt-5'>Tertarik untuk bergabung bersama kami? </h1>
-          <Link to={'/register-worker'}><button type="button" class="btn btn-outline-warning w-100"><h2 className='fs'>Daftar</h2></button></Link>
+          <Link to={'/register-worker'}><button type="button" className="btn btn-outline-warning w-100"><h2 className='fs'>Daftar</h2></button></Link>
         </div>
       </section>
       </main>

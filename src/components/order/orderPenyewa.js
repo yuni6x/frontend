@@ -18,7 +18,7 @@ function OrderPenyewa({orders, giveRating}) {
                             <p>Estimasi Waktu : {order.estimasiWaktu} Hari</p>
                         </div>
                         <div className='order-penyewa__card__footer'>
-                            <h3 className='text-capitalize'>{order.status === '' ? 'Menunggu Persetujuan' : order.status}</h3>
+                            <h3 className='text-capitalize'>{order.status === null ? 'Menunggu Persetujuan' : order.status}</h3>
                             <div>{order.rating ? 
                                     <h3>Rating: {order.rating} {<FaStar style={{ color: "gold", marginBottom: "5px" }}/>}</h3>
                                     : 

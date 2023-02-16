@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 // api
@@ -12,15 +12,12 @@ import loading from '../images/Loading.gif';
 
 function YourOrderPage({logout}){
     const [orders,setOrder] = useState(null);
+    const [statusOrder,setStatus] = useState(null);
     const [load, setLoad] = useState(true);
     const navigate = useNavigate();
-  
-    useEffect(() => {
-      let role = JSON.parse(localStorage.getItem('auth')).role;
 
-      if(!isPenyewa(role)) navigate('/');
-
-      getOrderPenyewa().then(({error , data}) => {
+    const gettingOrder = useCallback(() => {
+      getOrderPenyewa().then(({error, data}) => {
         if (error) {
           Swal.fire({
             icon: 'error',
@@ -31,17 +28,46 @@ function YourOrderPage({logout}){
 
         } else{
             console.log(data)
+            //let status = data.map(d => d.status)
+            //setStatus(status)
+            // console.log(status)
             setOrder(data);
             setLoad(false)
-        }  
-      });
-    }, [logout]);
+        }
+      })
+    })
+
+    useEffect(() => {
+      let role = JSON.parse(localStorage.getItem('auth')).role;
+
+      if(!isPenyewa(role)) navigate('/');
+      gettingOrder();
+      // getOrderPenyewa().then(({error , data}) => {
+      //   if (error) {
+      //     Swal.fire({
+      //       icon: 'error',
+      //       title: 'Oops...',
+      //       text: error,
+      //     })
+      //     if(isTokenExpired(error)) logout() 
+
+      //   } else{
+      //       console.log(data)
+      //       let status = data.map(d => d.status)
+      //       setStatus(status)
+      //       console.log(status)
+      //       setOrder(data);
+      //       setLoad(false)
+      //   }  
+      // });
+    }, [gettingOrder]);
 
     const isPenyewa = (role) => {
       return role === 'Penyewa' ? true : false;
     }
 
     async function giveRating(event) {
+      setLoad(true)
       const { value: text } = await Swal.fire({
         input: 'number',
         inputLabel: 'Rating',
@@ -72,6 +98,9 @@ function YourOrderPage({logout}){
           })
         }
       }
+      
+      console.log(text)
+      setLoad(false)
     }
   
   

@@ -1,4 +1,5 @@
-const BASE_URL = 'https://api.findidealworker.my.id';
+// const BASE_URL = 'https://api.findidealworker.my.id';
+const BASE_URL = 'http://localhost:3005';
 
 function getAccessToken() {
   return localStorage.getItem('accessToken');
