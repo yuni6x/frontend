@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react';
+import React, { useCallback, useEffect, useState} from 'react';
 import loading from '../images/Loading.gif';
 import Swal from 'sweetalert2';
 // API
@@ -59,7 +59,7 @@ function HomePage({logout}) {
         setLoad(false)
       } 
     })
-  }, [getOrderWorker])
+  }, [])
 
 
   useEffect(() => {

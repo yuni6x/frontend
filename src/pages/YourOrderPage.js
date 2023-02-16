@@ -12,7 +12,6 @@ import loading from '../images/Loading.gif';
 
 function YourOrderPage({logout}){
     const [orders,setOrder] = useState(null);
-    const [statusOrder,setStatus] = useState(null);
     const [load, setLoad] = useState(true);
     const navigate = useNavigate();
 
@@ -28,46 +27,25 @@ function YourOrderPage({logout}){
 
         } else{
             console.log(data)
-            //let status = data.map(d => d.status)
-            //setStatus(status)
-            // console.log(status)
             setOrder(data);
             setLoad(false)
         }
       })
-    })
+    }, [])
 
     useEffect(() => {
       let role = JSON.parse(localStorage.getItem('auth')).role;
 
       if(!isPenyewa(role)) navigate('/');
       gettingOrder();
-      // getOrderPenyewa().then(({error , data}) => {
-      //   if (error) {
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: 'Oops...',
-      //       text: error,
-      //     })
-      //     if(isTokenExpired(error)) logout() 
-
-      //   } else{
-      //       console.log(data)
-      //       let status = data.map(d => d.status)
-      //       setStatus(status)
-      //       console.log(status)
-      //       setOrder(data);
-      //       setLoad(false)
-      //   }  
-      // });
-    }, [gettingOrder]);
+      
+    }, []);
 
     const isPenyewa = (role) => {
       return role === 'Penyewa' ? true : false;
     }
 
     async function giveRating(event) {
-      setLoad(true)
       const { value: text } = await Swal.fire({
         input: 'number',
         inputLabel: 'Rating',
@@ -101,6 +79,7 @@ function YourOrderPage({logout}){
       
       console.log(text)
       setLoad(false)
+      gettingOrder()
     }
   
   
