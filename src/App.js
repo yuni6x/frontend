@@ -15,6 +15,7 @@ import OrderPage from "./pages/OrderPage";
 import YourOrderPage from "./pages/YourOrderPage";
 import BantuanPage from "./pages/BantuanPage";
 import LandingPage from "./pages/LandingPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 // component
 import Navigation from "./components/navigation/navigation";
@@ -69,6 +70,7 @@ function App() {
               <Route path="/home" element={<HomePage logout={onLogout} />} />
               <Route path="/your-order" element={<YourOrderPage logout={onLogout} />} />
               <Route path="/worker/:id" element={<DetailPage logout={onLogout} />} />
+              <Route path="/profile/:id" element={<UserProfilePage logout={onLogout} />} />
               <Route path="/order/:id" element={<OrderPage logout={onLogout} />} />
               <Route path='*' element={<NotFoundPage logout={onLogout} />} />
             </Routes>

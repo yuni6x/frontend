@@ -13,6 +13,13 @@ function isTokenExpired(message){
   return message.toLowerCase().includes('expired') ? true : false
 }
 
+function rupiah (number){
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR"
+  }).format(number);
+}
+
 async function fetchWithToken(url, options = {}) {
   return fetch(url, {
     ...options,
@@ -84,14 +91,10 @@ async function getUserById(id){
   return { error: false, data: responseJson.data };
 }
 
-async function postOrder({permintaan, workerId, biayaHarian, biayaPembangunan, estimasiWaktu}){
-  console.log(biayaPembangunan)
+async function postOrder(workerId, formData){
   const response = await fetchWithToken(`${BASE_URL}/penyewa/order/${workerId}`,{
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ permintaan, biayaHarian, biayaPembangunan, estimasiWaktu })
+    body: formData
   })
 
   const responseJson = await response.json();
@@ -179,5 +182,6 @@ export {
   getOrderPenyewa,
   getOrderWorker,
   changeOrderStatus,
-  putRatingOrder
+  putRatingOrder,
+  rupiah
 };

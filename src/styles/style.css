@@ -134,7 +134,7 @@ header {
 }
 
 header > nav {
-  width: 100%;
+  width: 90%;
   color: white;
 }
 
@@ -183,7 +183,7 @@ nav>ul>li {
   flex-direction: row;
   font-size: 20px;
   background-color: #226e88;
-  /* display: none; */
+  /* margin-right: 20px; */
 }
 
 .navigate-link>li {
@@ -202,22 +202,9 @@ nav>ul>li {
   padding: 0 5px;
 }
 
-.navigate-link>li>a:hover, .logout:hover {
-  background-color: white;
-  border-radius: 10px;
-  color: #002B5B;
-}
-
-.logout{
-  display: block;
-  color: white;
-  background-color: transparent;
-  border: none;
-  padding: 5px;
-}
-
 .hidden {
   display: none;
+  
 }
 
 /* Home Page Style */
@@ -279,18 +266,18 @@ nav>ul>li {
   height: 100%;
 }
 
-.worker-detail{
+.worker-detail, .userProfile-detail{
   display: flex;
   flex-direction: row;
   margin-top: 80px;
 }
 
-.worker-detail > .card-header{
-  margin-right: 30px;
+.worker-detail > .card-header, .userProfile-detail > .card-header{
+  margin-right: 20px;
   padding: 15px;
 }
 
-.worker-detail > .card-header > img{
+.worker-detail > .card-header > img, .userProfile-detail > .card-header > img{
   display: block;
   height: 200px;
   border-radius: 50%;
@@ -338,6 +325,37 @@ nav>ul>li {
   border: 2px solid #0d6efd;
   border-radius: 10px;
 }
+
+
+/* user profile page  */
+.userProfile-page{
+  height: 100%;
+  background-color: white;
+  padding: 15px;
+}
+
+.userProfile-detail > .card-header{
+  padding: 15px;
+  flex: 1;
+}
+
+.userProfile-detail > .card-header > form{
+  margin: 30px;
+}
+
+.userProfile-detail > .card-header > form > input{
+  margin-bottom: 30px;
+}
+
+.userProfile-detail > .card-body > .biodata{
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.userProfile-detail > .card-body > .biodata > div{
+  margin: 30px;
+}
+
 
 /* order Page */
 .order-page{
@@ -402,7 +420,9 @@ nav>ul>li {
 }
 
 @media screen and (max-width: 805px) {
-  nav{
+  header > nav {
+    width: 100%;
+    color: white;
     flex-direction: column;
   }
   #hamburger-icon{

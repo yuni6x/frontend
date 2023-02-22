@@ -39,10 +39,17 @@ function OrderPage({logout}) {
   }, [logout,id]);
 
 
-  async function onOrder({permintaan, biayaHarian, biayaPembangunan, estimasiWaktu, workerId}) {
-    console.log(biayaPembangunan)
+  async function onOrder({permintaan, biayaHarian, biayaPembangunan, estimasiWaktu, workerId, image}) {
     setLoad(true)
-    const { error, feedback } = await postOrder({ permintaan, biayaHarian, biayaPembangunan, estimasiWaktu, workerId });
+    let formData = new FormData();
+    formData.append('permintaan', permintaan);
+    formData.append('biayaHarian', biayaHarian);
+    formData.append('biayaPembangunan', biayaPembangunan);
+    formData.append('estimasiWaktu', estimasiWaktu);
+    formData.append('workerId', workerId);
+    formData.append('image', image);
+    console.log(image)
+    const { error, feedback } = await postOrder(workerId, formData);
     setLoad(false)
     if (error) {
       Swal.fire({
@@ -74,7 +81,7 @@ function OrderPage({logout}) {
     if (worker) {
       return (
         <section className="order-page">
-          <OrderForm order={onOrder} {...userID} />
+          <OrderForm order={onOrder} biayaHarian={worker.priceRate} {...userID} />
         </section>
       );
     } else {

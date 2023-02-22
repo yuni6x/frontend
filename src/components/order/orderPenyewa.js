@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
+import { rupiah } from '../../utils/apis';
 
 function OrderPenyewa({orders, giveRating}) {
 
@@ -13,9 +14,11 @@ function OrderPenyewa({orders, giveRating}) {
                         <div className='order-penyewa__card__body'>
                             <h3>{order.permintaan}</h3>
                             <p>Pekerja : {order.Pekerja?.fullName}</p>
-                            <p>Biaya Harian: Rp {order.biayaHarian}</p>
-                            <p>Biaya Pembangunan : Rp {order.biayaPembangunan}</p>
+                            <p>Biaya Harian: {rupiah(order.biayaHarian)}</p>
+                            <p>Biaya Pembangunan : {rupiah(order.biayaPembangunan)}</p>
                             <p>Estimasi Waktu : {order.estimasiWaktu} Hari</p>
+                            <p>Biaya Total : {rupiah(order.biayaTotal)}</p>
+                            <img src={`http://localhost:3005/` + order.image} alt='repair location' width={200}></img>
                         </div>
                         <div className='order-penyewa__card__footer'>
                             <h3 className='text-capitalize'>{order.status === null ? 'Menunggu Persetujuan' : order.status}</h3>
