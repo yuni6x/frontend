@@ -52,8 +52,8 @@ function HomePage({logout}) {
         setData(data)
         console.log(data);
         setWaitingListOrder(data.filter((d) => d.status === null));
-        setOnProgressOrder(data.filter((d) => d.status === 'on progress'));
-        setDoneOrder(data.filter((d) => d.status === 'done'))
+        setOnProgressOrder(data.filter((d) => d.status === 'on progress' || d.status === 'done by worker'));
+        setDoneOrder(data.filter((d) => d.status === 'confirmed done'))
         console.log(waitingListOrder);
         console.log(data);
         setLoad(false)
@@ -118,7 +118,7 @@ function HomePage({logout}) {
 
   async function onDone(event){
     setLoad(true)
-    const {error} = await changeOrderStatus({id: event.target.id, status: 'done'});
+    const {error} = await changeOrderStatus({id: event.target.id, status: 'done by worker'});
     setLoad(false)
     
     if (error) {
@@ -134,6 +134,7 @@ function HomePage({logout}) {
     }
   }
 
+  
   if(load){
     return <img className='position-absolute top-50 start-50 translate-middle' src={loading} alt='loading'/>
   }

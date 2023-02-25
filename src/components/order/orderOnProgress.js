@@ -19,7 +19,10 @@ function OrderOnProgress({orders, done}) {
                                 <p>Estimasi waktu : Rp. {order.estimasiWaktu} hari</p>
                             </div>
                             <div className="col">
-                                <button id={order.id} onClick={done} className="btn btn-primary">End Order</button>
+                                {order.status === 'on progress' ?
+                                    <button id={order.id} onClick={done} className="btn btn-primary">End Order</button>
+                                    : <h4>Waiting Customer to confirm</h4>
+                                }
                             </div>
                         </div>
                     </div>

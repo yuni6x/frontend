@@ -151,13 +151,31 @@ async function changeOrderStatus({id,status}) {
   return { error: false, data: responseJson.data };
 }
 
-async function putRatingOrder({id,rating}) {
+async function confirmOrderStatus({id}) {
+  const response = await fetchWithToken(`${BASE_URL}/penyewa/order/done/${id}`,{
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify({ status })
+  })
+  const responseJson = await response.json()
+
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
+async function putRatingOrder({id,rating,review}) {
   const response = await fetchWithToken(`${BASE_URL}/penyewa/order/${id}`,{
     method: "PUT",
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ rating })
+    body: JSON.stringify({ rating, review })
   })
   const responseJson = await response.json();
 
@@ -183,5 +201,6 @@ export {
   getOrderWorker,
   changeOrderStatus,
   putRatingOrder,
+  confirmOrderStatus,
   rupiah
 };

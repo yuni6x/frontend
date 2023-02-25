@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 // api
-import { isTokenExpired, getOrderPenyewa, putRatingOrder } from '../utils/apis';
+import { isTokenExpired, getOrderPenyewa, putRatingOrder, confirmOrderStatus } from '../utils/apis';
 
 // component and page
 import OrderPenyewa from '../components/order/orderPenyewa';
@@ -45,21 +45,30 @@ function YourOrderPage({logout}){
       return role === 'Penyewa' ? true : false;
     }
 
-    async function giveRating(event) {
-      const { value: text } = await Swal.fire({
-        input: 'number',
-        inputLabel: 'Rating',
-        inputPlaceholder: 'Give Your Rating Here (1 - 5)',
-        inputAttributes: {
-          'min': 1,
-          'max': 5,
-          'aria-label': 'Give Your Rating Here'
-        },
-        showCancelButton: true
-      })
+    async function onConfirmed(event){
+      console.log(event.target.id)
+      setLoad(true)
+      const {error} = await confirmOrderStatus({id: event.target.id, status: 'confirmed done'});
+      setLoad(false)
       
-      if (text) {
-        const { error, feedback } = await putRatingOrder({id: event.target.id , rating: text})
+      if (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error,
+        })
+        // Check if token is expired
+        if(isTokenExpired(error)) logout();   
+      } else{
+        gettingOrder()
+      }
+    }
+
+    async function giveRating({rating, review, orderId}) {
+      console.log('order id' + orderId)
+      console.log(review)
+      console.log(rating)
+        const { error, feedback } = await putRatingOrder({id: orderId , rating, review})
         if (error) {
           Swal.fire({
             icon: 'error',
@@ -75,9 +84,8 @@ function YourOrderPage({logout}){
             text: feedback,
           })
         }
-      }
       
-      console.log(text)
+      
       setLoad(false)
       gettingOrder()
     }
@@ -89,7 +97,7 @@ function YourOrderPage({logout}){
     else{
         return (
           <section className='your-order-page'>
-            <OrderPenyewa orders={orders} giveRating={giveRating}/>
+            <OrderPenyewa orders={orders} giveRating={giveRating} confirm={onConfirmed}/>
           </section>
         );
     }
