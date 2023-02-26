@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { changeUserImage } from "../utils/apis";
 
 // api
 import { getUserById, isTokenExpired } from "../utils/apis";
@@ -43,6 +44,34 @@ function UserProfilePage({ logout }) {
     setIsUpdate(input)
   }
 
+  async function onChangeImage({image}){
+    setLoad(true)
+    console.log(image)
+    
+    let formData = new FormData();
+    formData.append('image', image);
+
+    const { error, feedback } = await changeUserImage(formData);
+
+    setLoad(false)
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+      if(isTokenExpired(error)) logout() 
+    }else{
+      Swal.fire(
+        'Good job!',
+        `${feedback}`,
+        'success'
+      )
+    }
+
+
+  }
+
 
 
   if(load){
@@ -53,7 +82,7 @@ function UserProfilePage({ logout }) {
     if(user){
         return (
             <section className="userProfile-page">
-              <UserDetail toggleUpdate={toggleUpdate} isUpdate={isUpdate} {...user} />
+              <UserDetail changeImage={onChangeImage} toggleUpdate={toggleUpdate} isUpdate={isUpdate} {...user} />
             </section>
           );
     }

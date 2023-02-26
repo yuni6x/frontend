@@ -280,7 +280,7 @@ nav>ul>li {
 .worker-detail > .card-header > img, .userProfile-detail > .card-header > img{
   display: block;
   height: 200px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   margin-bottom: 35px;
 }
 

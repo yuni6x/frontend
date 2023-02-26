@@ -185,7 +185,21 @@ async function putRatingOrder({id,rating,review}) {
   }
 
   return { error: false, feedback: responseJson.message };
+}
 
+async function changeUserImage(formData) {
+  const response = await fetchWithToken(`${BASE_URL}/user/updateprofile`,{
+    method: "PUT",
+    body: formData
+  })
+  const responseJson = await response.json();
+
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, feedback: null };
+  }
+
+  return { error: false, feedback: responseJson.message };
 }
 
 export {
@@ -202,5 +216,6 @@ export {
   changeOrderStatus,
   putRatingOrder,
   confirmOrderStatus,
+  changeUserImage,
   rupiah
 };
