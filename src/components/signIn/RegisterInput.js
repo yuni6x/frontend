@@ -103,7 +103,6 @@ class RegisterInput extends React.Component {
       kota: this.state.kota,
       kecamatan: this.state.kecamatan,
       kelurahan: this.state.kelurahan,  
-      img: 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png',
       id_role: 2
     });
   }

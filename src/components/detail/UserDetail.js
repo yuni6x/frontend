@@ -1,15 +1,17 @@
 import React from 'react'
 import {FaStar, FaEdit} from "react-icons/fa";
-
+import State from '../../hooks/State';
 
 function UserDetail({ id, fullName, phoneNumber, 
                     img, kecamatan, kelurahan, kota, provinsi, rating,
-                    priceRate, id_role }) 
+                    priceRate, id_role, toggleUpdate, isUpdate })         
 {
+  const [formFullName, setFullName] = State(fullName)
+
   return (
     <div className='userProfile-detail card'>
         <div className='card-header'>
-            <img src={img} alt={fullName}></img>
+            <img src={img ? img : 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png'} alt={fullName}></img>
             <form>
               <input type="file" name='image-profile' accept="image/*"/>
               <button type='submit' className='btn btn-success' disabled>Change image</button>
@@ -25,12 +27,23 @@ function UserDetail({ id, fullName, phoneNumber,
               <p>Harga Harian</p>
             </div>
             <div>
-              <p>{fullName}</p>
-              <p>{phoneNumber}</p>
-              <p>{kelurahan}, {kecamatan}, {kota}, {provinsi}</p>
-              <p>{priceRate}</p>
+              {
+                
+                isUpdate === true ? 
+                <form>
+                  <input type='text' name='fullName' value={formFullName} onChange={setFullName}></input>
+                </form>
+                :
+                <>
+                  <p>{fullName}</p>
+                  <p>{phoneNumber}</p>
+                  <p>{kelurahan}, {kecamatan}, {kota}, {provinsi}</p>
+                  <p>{priceRate}</p>
+                </>
+              }
+              
             </div>
-            <div><button className='btn'><FaEdit style={{ color: "black", width:"25", height:"25" }}/></button></div>
+            <div style={{ display: isUpdate? 'none' : 'block' }}><button className='btn' onClick={() => toggleUpdate(true)}><FaEdit style={{ color: "black", width:"25", height:"25" }}/></button></div>
           </div>
 
           {
@@ -43,5 +56,6 @@ function UserDetail({ id, fullName, phoneNumber,
     </div>
   )
 }
+
 
 export default UserDetail

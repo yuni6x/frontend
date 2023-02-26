@@ -15,7 +15,9 @@ import loading from '../images/Loading.gif';
 function UserProfilePage({ logout }) {
   const [user, setUser] = useState(null);
   const [load, setLoad] = useState(true);
+  const [isUpdate, setIsUpdate ] = useState(false)
   const { id } = useParams();
+  
 
   useEffect(() => {
     getUserById(id).then(({error , data}) => {
@@ -36,6 +38,11 @@ function UserProfilePage({ logout }) {
     });
   }, [id, logout]);
 
+  
+  const toggleUpdate = (input) =>{
+    setIsUpdate(input)
+  }
+
 
 
   if(load){
@@ -46,7 +53,7 @@ function UserProfilePage({ logout }) {
     if(user){
         return (
             <section className="userProfile-page">
-              <UserDetail {...user} />
+              <UserDetail toggleUpdate={toggleUpdate} isUpdate={isUpdate} {...user} />
             </section>
           );
     }

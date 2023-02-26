@@ -2,7 +2,7 @@ import React from 'react';
 
 function BantuanPage() {
   return (
-    <main>
+    <main style={{ backgroundColor: 'white' }}>
       <section className='base row px-5'>
         <div className='col col-6 my-auto'>
           <h1>Tata Cara <br/> Pemesanan Tukang</h1>

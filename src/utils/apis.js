@@ -48,13 +48,13 @@ async function login({ email, password }) {
   return { error: false, data: responseJson.data };
 }
 
-async function register({ fullName, email, password, phoneNumber, img, kecamatan, kelurahan, kota, provinsi, id_role }) {
+async function register({ fullName, email, password, phoneNumber, kecamatan, kelurahan, kota, provinsi, id_role }) {
   const response = await fetch(`${BASE_URL}/user/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ fullName, email, password, phoneNumber, img, kecamatan, kelurahan, kota, provinsi, id_role }),
+    body: JSON.stringify({ fullName, email, password, phoneNumber, kecamatan, kelurahan, kota, provinsi, id_role }),
   });
 
   const responseJson = await response.json();

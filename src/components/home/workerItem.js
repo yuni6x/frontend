@@ -6,7 +6,7 @@ function WorkerItem({ id, fullName, img, kota, rating }) {
  return (
    <div className='worker-item card'>
     <div className='worker-item__img'>
-        <img src={img} alt=''></img>
+        <img src={img ? img : 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png'} alt=''></img>
     </div>
     <div className='worker-item__body'>
         <Link to={`/worker/${id}`}><h3 className='worker-item__body__name'>{fullName}</h3></Link>
