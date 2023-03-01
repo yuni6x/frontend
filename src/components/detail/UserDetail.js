@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState} from 'react'
 import {FaStar, FaEdit} from "react-icons/fa";
 import State from '../../hooks/State';
 
@@ -27,34 +27,40 @@ function UserDetail({ id, fullName, phoneNumber,
   return (
     <div className='userProfile-detail card'>
         <div className='card-header'>
-            <img src={img ? `http://localhost:3005/`+img : 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png'} alt={fullName}></img>
-            <form onSubmit={submitImage}>
-              <input type="file" name='image-profile' accept="image/*" onChange={handlerImage} />
-              <button type='submit' className='btn btn-success'>Change image</button>
-            </form>
+          <img src={img ? `http://localhost:3005/`+img : 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png'} alt={fullName}></img>
+          <form onSubmit={submitImage}>
+            <input type="file" name='image-profile' accept="image/*" onChange={handlerImage} />
+            <button type='submit' className='btn btn-success'>Change image</button>
+          </form>
         </div>
         
         <div className='card-body'>
           <div className='biodata'>
             <div>
-              <p>Nama Lengkap</p>
-              <p>No HP</p>
-              <p>Alamat</p>
-              <p>Harga Harian</p>
+              <p>Full Name</p>
+              <p>Phone Number</p>
+              <p>Address</p>
+              {id_role === 1 ? <p>Price Rate</p> : ''}
+              
+               
+              
             </div>
             <div>
               {
                 
                 isUpdate === true ? 
                 <form>
-                  <input type='text' name='fullName' value={formFullName} onChange={setFullName}></input>
+                  <input type='text' name='fullName' value={formFullName} onChange={setFullName} />
                 </form>
                 :
                 <>
-                  <p>{fullName}</p>
-                  <p>{phoneNumber}</p>
-                  <p>{kelurahan}, {kecamatan}, {kota}, {provinsi}</p>
-                  <p>{priceRate}</p>
+                  <p>: {fullName}</p>
+                  <p>: {phoneNumber}</p>
+                  <p>: {kelurahan}, {kecamatan}, {kota}, {provinsi}</p>
+                  {id_role === 1 ? <p>: {priceRate}</p> : ''}
+                  
+                    
+                  
                 </>
               }
               

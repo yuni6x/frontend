@@ -275,23 +275,46 @@ nav>ul>li {
 .worker-detail > .card-header, .userProfile-detail > .card-header{
   margin-right: 20px;
   padding: 15px;
+  padding-left: 25px;
+  border-right: 1px solid rgba(0, 0, 0, .4);
+  flex: 2;
 }
 
 .worker-detail > .card-header > img, .userProfile-detail > .card-header > img{
   display: block;
   height: 200px;
-  /* border-radius: 50%; */
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px auto 10px auto;
+}
+
+.worker-detail > .card-header> .card-header__name{
+  text-align: center;
   margin-bottom: 35px;
+}
+
+.worker-detail > .card-header> .card-header__skill{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
 .worker-detail > .card-header> .card-header__address{
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-weight: 550;
+}
+
+.worker-detail > .card-header> .card-header__phone{
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 550;
 }
 
 .worker-detail > .card-body{
   padding: 15px;
-  flex: 1;
+  flex: 5;
 }
 
 .card-body__rating{
@@ -353,7 +376,7 @@ nav>ul>li {
 }
 
 .userProfile-detail > .card-body > .biodata > div{
-  margin: 30px;
+  margin: 15px;
 }
 
 
@@ -456,7 +479,10 @@ nav>ul>li {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 915px) {
+  main{
+    width: 915px;
+  }
   .worker-list{
     grid-template-columns: repeat(2, 1fr);
   }

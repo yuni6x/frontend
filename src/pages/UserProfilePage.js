@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { changeUserImage } from "../utils/apis";
@@ -19,8 +19,7 @@ function UserProfilePage({ logout }) {
   const [isUpdate, setIsUpdate ] = useState(false)
   const { id } = useParams();
   
-
-  useEffect(() => {
+  const gettingUserById = useCallback(() =>{
     getUserById(id).then(({error , data}) => {
       if (error) {
         Swal.fire({
@@ -37,7 +36,13 @@ function UserProfilePage({ logout }) {
       
       setLoad(false)
     });
-  }, [id, logout]);
+  },[])
+
+  
+
+  useEffect(() => {
+    gettingUserById()
+  }, []);
 
   
   const toggleUpdate = (input) =>{
@@ -68,6 +73,7 @@ function UserProfilePage({ logout }) {
         'success'
       )
     }
+    gettingUserById(id)
 
 
   }

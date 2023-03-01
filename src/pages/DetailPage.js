@@ -17,6 +17,7 @@ function DetailPage({logout}){
     const { id } = useParams();
   
     useEffect(() => {
+      
       getUserById(id).then(({error , data}) => {
         if (error) {
           Swal.fire({
@@ -25,14 +26,21 @@ function DetailPage({logout}){
             text: error,
           })
           if(isTokenExpired(error)) logout() 
-           
+          
         } else{
           setWorker(data);
+          console.log(data)
+          console.log(data.id_role?.roleName)
         }
         
         setLoad(false)
       });
+      
     }, [id, logout]);
+
+    const isPenyewa = (role) => {
+      return role === 'Penyewa' ? true : false;
+    }
   
   
     if(load){
