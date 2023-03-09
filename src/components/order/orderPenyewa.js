@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import { rupiah } from '../../utils/apis';
 import StarRating from './starRating';
 
-function OrderPenyewa({orders, giveRating, confirm}) {
+function OrderPenyewa({orders, giveRating, confirm, notConfirm}) {
 
     return (
         <div className='order-penyewa'>
@@ -27,7 +27,12 @@ function OrderPenyewa({orders, giveRating, confirm}) {
                                     <h3>Rating: {order.rating} {<FaStar style={{ color: "gold", marginBottom: "5px" }}/>}</h3>
                                     : 
                                     <div>{order.status === 'done by worker' ? 
-                                        <button id={order.id} className='btn btn-primary' onClick={confirm}>Confirm Done Order</button> 
+                                        <>
+                                            <button id={order.id} className='btn btn-primary' onClick={confirm}>Confirm Done Order</button> 
+                                            <button id={order.id} className='btn btn-danger' onClick={notConfirm}>Not Confirm Done Order</button> 
+                                        </>
+                                        
+
                                         : 
                                         order.status === 'confirmed done' ? 
                                             <StarRating giveRating={giveRating} orderId={order.id} />

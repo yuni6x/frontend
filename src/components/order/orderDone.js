@@ -9,7 +9,7 @@ function OrderDone({orders}) {
             <div className="on-progress-order">
                 {orders.map((order) => (
                     <div className="on-progress-order__card card" key={order.id}>
-                        <div className="won-progress-order__card__body">
+                        <div className="on-progress-order__card__body">
                             <div className="col">
                                 <h5>{order.permintaan}</h5>
                                 <h6>Penyewa : {order.Penyewa.fullName}</h6>

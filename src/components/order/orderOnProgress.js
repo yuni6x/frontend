@@ -18,6 +18,9 @@ function OrderOnProgress({orders, done}) {
                                 <p>biaya pembangunan : Rp. {order.biayaPembangunan}</p>
                                 <p>Estimasi waktu : Rp. {order.estimasiWaktu} hari</p>
                             </div>
+                            <div className="col mb-3">
+                                <img src={`http://localhost:3005/` + order.image} alt='location condition around' width={150}></img>
+                            </div>
                             <div className="col">
                                 {order.status === 'on progress' ?
                                     <button id={order.id} onClick={done} className="btn btn-primary">End Order</button>

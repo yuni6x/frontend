@@ -64,6 +64,25 @@ function YourOrderPage({logout}){
       }
     }
 
+    async function notConfirmed(event){
+      console.log(event.target.id)
+      setLoad(true)
+      const {error} = await confirmOrderStatus({id: event.target.id, status: 'on progress'});
+      setLoad(false)
+      
+      if (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error,
+        })
+        // Check if token is expired
+        if(isTokenExpired(error)) logout();   
+      } else{
+        gettingOrder()
+      }
+    }
+
     async function giveRating({rating, review, orderId}) {
       console.log('order id' + orderId)
       console.log(review)
@@ -97,7 +116,7 @@ function YourOrderPage({logout}){
     else{
         return (
           <section className='your-order-page'>
-            <OrderPenyewa orders={orders} giveRating={giveRating} confirm={onConfirmed}/>
+            <OrderPenyewa orders={orders} giveRating={giveRating} confirm={onConfirmed} notConfirm={notConfirmed}/>
           </section>
         );
     }

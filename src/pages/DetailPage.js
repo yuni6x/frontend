@@ -30,7 +30,6 @@ function DetailPage({logout}){
         } else{
           setWorker(data);
           console.log(data)
-          console.log(data.id_role?.roleName)
         }
         
         setLoad(false)

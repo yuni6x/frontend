@@ -9,6 +9,7 @@ import WorkerList from '../components/home/workerList';
 import OrderWaitingList from '../components/order/orderWaitingList';
 import OrderOnProgress from '../components/order/orderOnProgress';
 import OrderDone from '../components/order/orderDone';
+import { Link } from 'react-router-dom';
 
 function HomePage({logout}) {
   const [data,setData] = useState(null); // array of object type
@@ -163,6 +164,7 @@ function HomePage({logout}) {
       return (
       <section className='home-page'>
           <h1>You doesnt received any order yet</h1>
+          <h2>Update your <Link className="text-decoration-none" to={"/profile/" + JSON.parse(localStorage.getItem('auth')).id}>profile</Link> to attract customer</h2>
       </section>
       )
     }

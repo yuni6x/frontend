@@ -14,6 +14,7 @@ class RegisterInput extends React.Component {
       kota: '',
       kecamatan: '',
       kelurahan: '',
+      address: ''
     }
 
     this.onFullNameChange = this.onFullNameChange.bind(this);
@@ -24,6 +25,8 @@ class RegisterInput extends React.Component {
     this.onKotaChange = this.onKotaChange.bind(this);
     this.onKecamatanChange = this.onKecamatanChange.bind(this);
     this.onKelurahanChange = this.onKelurahanChange.bind(this); 
+    this.onAddressChange = this.onAddressChange.bind(this); 
+
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
@@ -90,6 +93,14 @@ class RegisterInput extends React.Component {
       };
     });
   }
+
+  onAddressChange(event) {
+    this.setState(() => {
+      return {
+        address: event.target.value,
+      };
+    });
+  }
   
   onSubmitHandler(event) {
     event.preventDefault();
@@ -102,7 +113,8 @@ class RegisterInput extends React.Component {
       provinsi: this.state.provinsi,
       kota: this.state.kota,
       kecamatan: this.state.kecamatan,
-      kelurahan: this.state.kelurahan,  
+      kelurahan: this.state.kelurahan, 
+      address: this.state.address,
       id_role: 2
     });
   }
@@ -120,6 +132,7 @@ class RegisterInput extends React.Component {
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kota" value={this.state.kota} onChange={this.onKotaChange} />
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kecamatan" value={this.state.kecamatan} onChange={this.onKecamatanChange} />
           <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="Kelurahan" value={this.state.kelurahan} onChange={this.onKelurahanChange} />
+          <input className='form-control my-4 mx-auto shadow-none border-0 border-bottom border-dark rounded-0 rounded-top' type="text" placeholder="address" value={this.state.address} onChange={this.onAddressChange} />
 
         </div>
         <button className='input-btn border-0 rounded-pill'>Daftar</button>

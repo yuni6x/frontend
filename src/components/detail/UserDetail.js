@@ -7,6 +7,10 @@ function UserDetail({ id, fullName, phoneNumber,
                     priceRate, id_role, toggleUpdate, isUpdate, changeImage })         
 {
   const [formFullName, setFullName] = State(fullName)
+  const [formPhoneNumber, setPhoneNumber] = State(phoneNumber)
+  const [formAdress, setAddress] = State('')
+
+
   const [image, setImage] = useState('')
 
   function handlerImage(e){
@@ -20,7 +24,6 @@ function UserDetail({ id, fullName, phoneNumber,
     changeImage(
       {image}
     )
-
   }
 
 
@@ -41,16 +44,22 @@ function UserDetail({ id, fullName, phoneNumber,
               <p>Phone Number</p>
               <p>Address</p>
               {id_role === 1 ? <p>Price Rate</p> : ''}
-              
-               
-              
             </div>
             <div>
               {
                 
                 isUpdate === true ? 
                 <form>
-                  <input type='text' name='fullName' value={formFullName} onChange={setFullName} />
+                  <div className='mb-2'>
+                    <input type='text' name='fullName' value={formFullName} onChange={setFullName} />
+                  </div>
+                  <div className='mb-2'>
+                    <input type='number' name='phoneNumber' value={formPhoneNumber} onChange={setPhoneNumber} />
+                  </div>  
+                  <div className='mb-2'>
+                    <input type='text' name='priceRate' value={formAdress} onChange={setAddress} />
+                  </div>
+
                 </form>
                 :
                 <>
