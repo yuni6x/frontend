@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { changeUserImage } from "../utils/apis";
+import { changeUserImage, updateUserBiodata } from "../utils/apis";
 
 // api
 import { getUserById, isTokenExpired } from "../utils/apis";
@@ -78,8 +78,8 @@ function UserProfilePage({ logout }) {
 
   async function updateProfile(profile) {
     console.log(profile)
-    const error = false;
-    const feedback = 'berhasil'
+    const {error, feedback} = await updateUserBiodata(profile);
+
     if (error) {
       Swal.fire({
         icon: 'error',

@@ -214,6 +214,24 @@ async function changeUserImage(formData) {
   return { error: false, feedback: responseJson.message };
 }
 
+async function updateUserBiodata(profile) {
+  const response = await fetchWithToken(`${BASE_URL}/user/updatebiodata`,{
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(profile)
+  })
+  const responseJson = await response.json();
+
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, feedback: null };
+  }
+
+  return { error: false, feedback: responseJson.message };
+}
+
 export {
   getAccessToken,
   putAccessToken,
@@ -230,5 +248,6 @@ export {
   putRatingOrder,
   confirmOrderStatus,
   changeUserImage,
+  updateUserBiodata,
   rupiah
 };

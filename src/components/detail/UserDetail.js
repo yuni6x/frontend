@@ -43,13 +43,13 @@ function UserDetail({
   function submitProfile(event) {
     event.preventDefault();
     updateProfile({
-      formFullName,
-      formPhoneNumber,
-      formAdress,
-      formKelurahan,
-      formKecamatan,
-      formKota,
-      formProvinsi
+      fullName: formFullName,
+      phoneNumber: formPhoneNumber,
+      address: formAdress,
+      kelurahan: formKelurahan,
+      kecamatan: formKecamatan,
+      kota: formKota,
+      provinsi: formProvinsi
     });
   }
 
