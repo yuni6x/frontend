@@ -132,6 +132,18 @@ async function getOrderWorker() {
   return { error: false, data: responseJson.data };
 }
 
+async function getOrderWorkerById(id) {
+  const response = await fetchWithToken(`${BASE_URL}/tukang/order/${id}`);
+  const responseJson = await response.json();
+
+  console.log(responseJson)
+  if (responseJson.status !== 'success') {
+    return { error: responseJson.message, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
 async function changeOrderStatus({id,status}) {
   console.log(JSON.stringify({ status }))
   const response = await fetchWithToken(`${BASE_URL}/tukang/order/${id}`,{
@@ -213,6 +225,7 @@ export {
   postOrder,
   getOrderPenyewa,
   getOrderWorker,
+  getOrderWorkerById,
   changeOrderStatus,
   putRatingOrder,
   confirmOrderStatus,

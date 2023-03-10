@@ -375,15 +375,38 @@ nav>ul>li {
   margin-bottom: 30px;
 }
 
+.userProfile-detail > .card-header{
+  padding-right: 0;
+  margin-right: 12px;
+}
+
 .userProfile-detail > .card-body > .biodata{
   display: flex;
+  justify-content:space-between;
+}
+
+.userProfile-detail > .card-body > .biodata table{
   margin-bottom: 30px;
 }
 
-.userProfile-detail > .card-body > .biodata > div{
-  margin: 15px;
+.userProfile-detail > .card-body > .biodata td{
+  padding: 5px;
+  padding-right: 10px;
 }
 
+.userProfile-detail > .card-body > .biodata > form{
+  flex: 1;
+}
+
+.userProfile-detail > .card-body > .biodata > form > table{
+  width: 100%;
+}
+
+.userProfile-detail > .card-body > .biodata > form > button{
+  display: block;
+  font-size: 18px;
+  margin: auto;
+}
 
 /* order Page */
 .order-page{
@@ -438,6 +461,15 @@ nav>ul>li {
   margin-right: 50px;  
 }
 
+.order-penyewa__card__body__table > tbody > tr >td {
+  padding: 3px;
+  margin-left: 3px;
+}
+
+.order-penyewa__card__body__table > tbody > tr > td:nth-child(2) {
+  margin-right: 10px;
+}
+
 .order-penyewa__card__footer{
   padding: 15px;
   border: 1px solid lightgray;
@@ -485,9 +517,6 @@ nav>ul>li {
 }
 
 @media screen and (max-width: 915px) {
-  main{
-    width: 915px;
-  }
   .worker-list{
     grid-template-columns: repeat(2, 1fr);
   }

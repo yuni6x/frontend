@@ -14,11 +14,40 @@ function OrderPenyewa({orders, giveRating, confirm, notConfirm}) {
                     <div className='order-penyewa__card card' key={order.id}>
                         <div className='order-penyewa__card__body'>
                             <h3>{order.permintaan}</h3>
-                            <p>Worker : {order.Pekerja?.fullName}</p>
+                            <table className='order-penyewa__card__body__table'>
+                                <tbody>
+                                    <tr>
+                                        <td>Worker</td>
+                                        <td>:</td>
+                                        <td>{order.Pekerja?.fullName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Price</td>
+                                        <td>:</td>
+                                        <td>{rupiah(order.biayaHarian)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Development Cost</td>
+                                        <td>:</td>
+                                        <td>{rupiah(order.biayaPembangunan)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estimated Time</td>
+                                        <td>:</td>
+                                        <td>{order.estimasiWaktu} Hari</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Price</td>
+                                        <td>:</td>
+                                        <td>{rupiah(order.biayaTotal)}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {/* <p>Worker : {order.Pekerja?.fullName}</p>
                             <p>Daily Price: {rupiah(order.biayaHarian)}</p>
                             <p>Development cost : {rupiah(order.biayaPembangunan)}</p>
                             <p>Estimate Time : {order.estimasiWaktu} Hari</p>
-                            <p>Total Price : {rupiah(order.biayaTotal)}</p>
+                            <p>Total Price : {rupiah(order.biayaTotal)}</p> */}
                             <img src={`http://localhost:3005/` + order.image} alt='repair location' width={200}></img>
                         </div>
                         <div className='order-penyewa__card__footer'>

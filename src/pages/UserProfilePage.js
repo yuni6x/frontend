@@ -74,8 +74,28 @@ function UserProfilePage({ logout }) {
       )
     }
     gettingUserById(id)
+  }
 
-
+  async function updateProfile(profile) {
+    console.log(profile)
+    const error = false;
+    const feedback = 'berhasil'
+    if (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error,
+      })
+      if(isTokenExpired(error)) logout() 
+    }else{
+      Swal.fire(
+        'Good job!',
+        `${feedback}`,
+        'success'
+      )
+    }
+    toggleUpdate(false)
+    gettingUserById(id)
   }
 
 
@@ -88,7 +108,7 @@ function UserProfilePage({ logout }) {
     if(user){
         return (
             <section className="userProfile-page">
-              <UserDetail changeImage={onChangeImage} toggleUpdate={toggleUpdate} isUpdate={isUpdate} {...user} />
+              <UserDetail changeImage={onChangeImage} toggleUpdate={toggleUpdate} isUpdate={isUpdate} updateProfile={updateProfile} {...user} />
             </section>
           );
     }
