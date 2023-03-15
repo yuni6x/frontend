@@ -181,13 +181,10 @@ async function confirmOrderStatus({id,status}) {
   return { error: false, data: responseJson.data };
 }
 
-async function putRatingOrder({id,rating,review}) {
-  const response = await fetchWithToken(`${BASE_URL}/penyewa/order/${id}`,{
+async function putRatingOrder(orderId, formData) {
+  const response = await fetchWithToken(`${BASE_URL}/penyewa/order/${orderId}`,{
     method: "PUT",
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ rating, review })
+    body: formData
   })
   const responseJson = await response.json();
 

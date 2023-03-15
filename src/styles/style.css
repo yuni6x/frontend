@@ -15,6 +15,10 @@ body {
   flex: 1;
 }
 
+p{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .App{
   height: 100%;
 }
@@ -472,7 +476,7 @@ nav>ul>li {
 
 .order-penyewa__card__footer{
   padding: 15px;
-  border: 1px solid lightgray;
+  border-left: 1px solid gray;
   flex: 1;
 }
 

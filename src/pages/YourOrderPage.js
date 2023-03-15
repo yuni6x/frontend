@@ -83,26 +83,30 @@ function YourOrderPage({logout}){
       }
     }
 
-    async function giveRating({rating, review, orderId}) {
-      console.log('order id' + orderId)
-      console.log(review)
-      console.log(rating)
-        const { error, feedback } = await putRatingOrder({id: orderId , rating, review})
-        if (error) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error,
-          })
-          if(isTokenExpired(error)) logout() 
+    async function giveRating({rating, review, orderId, imageReview}) {
+      setLoad(true)
+      let formData = new FormData();
+      formData.append('rating', rating);
+      formData.append('review', review);
+      formData.append('image', imageReview);
+      const { error, feedback } = await putRatingOrder(orderId, formData)
+      // const error = false
+      // const feedback = 'done'
+      if (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error,
+        })
+        if(isTokenExpired(error)) logout() 
 
-        } else{
-          Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: feedback,
-          })
-        }
+      } else{
+        Swal.fire({
+          icon: 'success',
+          title: 'Good Job',
+          text: feedback,
+        })
+      }
       
       
       setLoad(false)
