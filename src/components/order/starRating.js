@@ -81,7 +81,6 @@ function StarRating({ giveRating, orderId }) {
         >
           Submit
         </button>
-        \{" "}
       </form>
     </div>
   );

@@ -90,8 +90,7 @@ function YourOrderPage({logout}){
       formData.append('review', review);
       formData.append('image', imageReview);
       const { error, feedback } = await putRatingOrder(orderId, formData)
-      // const error = false
-      // const feedback = 'done'
+
       if (error) {
         Swal.fire({
           icon: 'error',

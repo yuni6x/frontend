@@ -65,18 +65,23 @@ function OrderPenyewa({ orders, giveRating, confirm, notConfirm }) {
                       }
                     </h3>
                     <div className="border border-dark rounded">
-                      
-                    
-                      
-                    <img
-                      src={`http://localhost:3005/` + order.imageReview}
-                      className="mb-2 p-2"
-                      alt="repair result"
-                      width={240}
-                    ></img>
+                      {order.imageReview ? (
+                        <img
+                          src={`http://localhost:3005/` + order.imageReview}
+                          className="mb-2 p-2"
+                          alt="repair result"
+                          width={240}
+                        ></img>
+                      ) : (
+                        ""
+                      )}
 
-                    
-                      <p className="fs-6 m-0 p-2" style={{ backgroundColor: 'rgba(170,170,170,0.5)' }}>{order.review}</p>
+                      <p
+                        className="fs-6 m-0 p-2"
+                        style={{ backgroundColor: "rgba(170,170,170,0.5)" }}
+                      >
+                        {order.review}
+                      </p>
                     </div>
                   </>
                 ) : (
