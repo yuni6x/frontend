@@ -1,14 +1,18 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-function UserComment({ rating, review, imageReview, Penyewa, image, order }) {
-  console.log(order);
-  console.log(image);
-  console.log(Penyewa.img)
+function UserComment({
+  rating,
+  review,
+  imageReview,
+  Penyewa,
+  updatedAt,
+  order,
+}) {
   return (
     <div className="mb-3">
-      <div className="comment-header d-flex align-items-center ">
+      <div className="comment-header d-flex">
         {Penyewa.img ? (
           <img src={`http://localhost:3005/` + Penyewa.img} alt="review"></img>
         ) : (
@@ -25,13 +29,20 @@ function UserComment({ rating, review, imageReview, Penyewa, image, order }) {
             {[
               Array(rating)
                 .fill()
-                .map((index) => {
+                .map(() => {
                   return (
-                    <FaStar size={15} key={uuidv4()} style={{ color: "gold" }} />
+                    <FaStar
+                      size={15}
+                      key={uuidv4()}
+                      style={{ color: "gold" }}
+                    />
                   );
                 }),
             ]}
           </div>
+          <p className="m-0 opacity-50" style={{ fontSize: '14px' }}>
+            {new Date(updatedAt).toISOString().slice(0, 16).replace('T', ' ')}
+          </p>
         </div>
       </div>
       <div className="comment-body" style={{ marginLeft: "57px" }}>

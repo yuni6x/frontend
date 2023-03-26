@@ -41,6 +41,7 @@ function DetailPage({ logout }) {
         });
         if (isTokenExpired(error)) logout();
       } else {
+        console.log(data)
         setOrder(data);
       }
       setLoad(false);

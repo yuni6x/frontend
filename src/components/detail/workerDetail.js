@@ -1,7 +1,10 @@
 import React from "react";
 import UserComment from "./UserComment";
+import WorkerOrder from "./WorkerOrder";
+
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 function WorkerDetail({
   id,
@@ -18,7 +21,7 @@ function WorkerDetail({
 }) {
   return (
     <>
-      <div className="worker-detail card">
+      <div className="worker-detail card mx-4">
         <div className="card-header">
           <img
             src={
@@ -42,8 +45,20 @@ function WorkerDetail({
         </div>
         <div className="card-body">
           <h2 className="card-body__rating">
-            Rating {rating}{" "}
-            <FaStar style={{ color: "gold", marginBottom: "5px" }} />
+            {"Rating "+ parseFloat(rating)+ "  "}
+            {[
+              Array(rating)
+                .fill()
+                .map(() => {
+                  return (
+                    <FaStar
+                      size={24}
+                      key={uuidv4()}
+                      style={{ color: "gold" }}
+                    />
+                  );
+                }),
+            ]}
           </h2>
           <div className="card-body__button">
             <a href={`https://wa.me/${phoneNumber}`} target="blank">
@@ -53,12 +68,45 @@ function WorkerDetail({
               <button className="card-body__button__order">Order me</button>
             </Link>
           </div>
+          <div className="card-body__history-order mt-5">
+            <h3 className="text-center mb-3">History Order</h3>
+            {
+              orders.length > 0 ? (
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Permintaan</th>
+                      <th>Pendapatan</th>
+                      <th>Pengerjaan</th>
+                      <th>Tanggal Selesai</th>
+                    </tr>
+                    
+                  </thead>
+                  <tbody>
+                    {
+                      orders.map((order,index) => (
+                        <WorkerOrder key={uuidv4()} order={order} index={index} />
+                      ))
+                    }
+                  </tbody>
+                </table>
+              ) : <h3 className="text-danger">No order history yet</h3>
+            }
+          </div>
         </div>
       </div>
-      <section className="comment bg-secondary">
+      <section className="comment mx-4" style={{ backgroundColor: '#cfcfcf' }}>
         <h1 className="mb-3">Comment section</h1>
         {orders.length > 0
-          ? orders.map((order) => <UserComment key={order.id} image={img} {...order} order={order} />)
+          ? orders.map((order) => (
+              <UserComment
+                key={order.id}
+                image={img}
+                {...order}
+                order={order}
+              />
+            ))
           : ""}
       </section>
     </>
