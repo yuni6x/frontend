@@ -49,7 +49,7 @@ function UserDetail({
       kelurahan: formKelurahan,
       kecamatan: formKecamatan,
       kota: formKota,
-      provinsi: formProvinsi
+      provinsi: formProvinsi,
     });
   }
 
@@ -205,9 +205,14 @@ function UserDetail({
                   </tr>
                 </tbody>
               </table>
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
+              <div className="d-flex justify-content-center">
+                <button type="submit" className="btn btn-primary mx-3">
+                  Submit
+                </button>
+                <button type="button" onClick={() => toggleUpdate(false)} className="btn btn-danger">
+                  Cancel
+                </button>
+              </div>
             </form>
           )}
 

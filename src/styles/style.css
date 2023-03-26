@@ -363,6 +363,14 @@ nav>ul>li {
   margin-top: 20px;
 }
 
+.comment-header > img{
+  display: block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 
 /* user profile page  */
 .userProfile-page{
