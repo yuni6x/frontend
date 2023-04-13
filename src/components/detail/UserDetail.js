@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaStar, FaEdit } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 import State from "../../hooks/State";
 
 function UserDetail({
@@ -14,6 +15,7 @@ function UserDetail({
   rating,
   address,
   priceRate,
+  keahlian,
   id_role,
   toggleUpdate,
   isUpdate,
@@ -27,6 +29,8 @@ function UserDetail({
   const [formKecamatan, setKecamatan] = State(kecamatan);
   const [formKota, setKota] = State(kota);
   const [formProvinsi, setProvinsi] = State(provinsi);
+  const [formPriceRate, setPriceRate] = State(priceRate);
+  const [formKeahlian, setKeahlian] = State(keahlian);
   const [image, setImage] = useState("");
 
   function handlerImage(e) {
@@ -50,6 +54,8 @@ function UserDetail({
       kecamatan: formKecamatan,
       kota: formKota,
       provinsi: formProvinsi,
+      priceRate: formPriceRate,
+      keahlian: formKeahlian,
     });
   }
 
@@ -79,6 +85,26 @@ function UserDetail({
 
       <div className="card-body">
         <h1 className="mb-4 text-center">User Biodata</h1>
+        {id_role === 1 ? (
+          <h3 className="mb-3">
+            Rating {rating}{" "}
+            {[
+              Array(rating)
+                .fill()
+                .map(() => {
+                  return (
+                    <FaStar
+                      size={24}
+                      key={uuidv4()}
+                      style={{ color: "gold" }}
+                    />
+                  );
+                }),
+            ]}
+          </h3>
+        ) : (
+          ""
+        )}
         <div className="biodata">
           {isUpdate === false ? (
             <table className="table-biodata">
@@ -106,10 +132,18 @@ function UserDetail({
                   </td>
                 </tr>
                 {id_role === 1 ? (
-                  <tr>
-                    <td>Price Rate</td>
-                    <td>{priceRate}</td>
-                  </tr>
+                  <>
+                    <tr>
+                      <td>Price Rate</td>
+                      <td>:</td>
+                      <td>{priceRate}</td>
+                    </tr>
+                    <tr>
+                      <td>keahlian</td>
+                      <td>:</td>
+                      <td>{keahlian}</td>
+                    </tr>
+                  </>
                 ) : (
                   ""
                 )}
@@ -161,7 +195,7 @@ function UserDetail({
                       <input
                         type="text"
                         className="form-control"
-                        name="Address"
+                        name="kelurahan"
                         value={formKelurahan}
                         onChange={setKelurahan}
                       />
@@ -173,7 +207,7 @@ function UserDetail({
                       <input
                         type="text"
                         className="form-control"
-                        name="Address"
+                        name="kecamatan"
                         value={formKecamatan}
                         onChange={setKecamatan}
                       />
@@ -185,7 +219,7 @@ function UserDetail({
                       <input
                         type="text"
                         className="form-control"
-                        name="Address"
+                        name="kota"
                         value={formKota}
                         onChange={setKota}
                       />
@@ -197,19 +231,53 @@ function UserDetail({
                       <input
                         type="text"
                         className="form-control"
-                        name="Address"
+                        name="provinsi"
                         value={formProvinsi}
                         onChange={setProvinsi}
                       />
                     </td>
                   </tr>
+                  {id_role === 1 ? (
+                    <>
+                      <tr>
+                        <td>Price Rate</td>
+                        <td>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="priceRate"
+                            value={formPriceRate}
+                            onChange={setPriceRate}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>keahlian</td>
+                        <td>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="keahlian"
+                            value={formKeahlian}
+                            onChange={setKeahlian}
+                          />
+                        </td>
+                      </tr>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </tbody>
               </table>
               <div className="d-flex justify-content-center">
                 <button type="submit" className="btn btn-primary mx-3">
                   Submit
                 </button>
-                <button type="button" onClick={() => toggleUpdate(false)} className="btn btn-danger">
+                <button
+                  type="button"
+                  onClick={() => toggleUpdate(false)}
+                  className="btn btn-danger"
+                >
                   Cancel
                 </button>
               </div>
@@ -225,15 +293,6 @@ function UserDetail({
             </button>
           </div>
         </div>
-
-        {id_role === 1 ? (
-          <h3>
-            Rating {rating}{" "}
-            <FaStar style={{ color: "gold", marginBottom: "5px" }} />
-          </h3>
-        ) : (
-          ""
-        )}
       </div>
     </div>
   );

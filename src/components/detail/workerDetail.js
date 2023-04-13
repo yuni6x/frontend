@@ -44,10 +44,10 @@ function WorkerDetail({
           </p>
         </div>
         <div className="card-body">
-          <h2 className="card-body__rating">
+          <h2 className="card-body__rating fs-2">
             {"Rating "+ parseFloat(rating)+ "  "}
             {[
-              Array(rating)
+              Array(Math.floor(rating))
                 .fill()
                 .map(() => {
                   return (
