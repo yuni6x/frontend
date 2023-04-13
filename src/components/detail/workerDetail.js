@@ -45,9 +45,9 @@ function WorkerDetail({
         </div>
         <div className="card-body">
           <h2 className="card-body__rating fs-2">
-            {"Rating "+ parseFloat(rating)+ "  "}
+            {"Rating "+ parseFloat(rating.toFixed(2))+ "  "}
             {[
-              Array(Math.floor(rating))
+              Array(Math.round(rating))
                 .fill()
                 .map(() => {
                   return (

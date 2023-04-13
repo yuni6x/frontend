@@ -8,6 +8,9 @@ function LandingPage() {
         <div className='col col-6 text-light'>
           <h1 className='mt-5'>Let’s Explore <br/> Your Handyman </h1>
           <p>We can help you building house, outlet and many more. <br/> Register for detail and enjoying benefit from us.</p>
+          <Link to={'/login'}><button className='btn btn-warning'>Login Here</button></Link>
+          <p className='my-3'>doesn't Have an Account ?</p>
+          <Link to={'/register'}><button className='btn btn-primary'>Register Here</button></Link>
         </div>
         <div className='col col-6'>
           <img className='rounded mx-auto' src="https://www.kindpng.com/picc/m/47-475469_safeteyline-lone-worker-oil-and-gas-worker-png.png" alt="Safeteyline Lone Worker - Oil And Gas Worker Png, Transparent Png@kindpng.com"/>

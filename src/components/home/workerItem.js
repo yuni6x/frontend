@@ -22,13 +22,13 @@ function WorkerItem({ id, fullName, img, kota, rating, keahlian }) {
         </Link>
         <p className="worker-item__body__skill">{keahlian}</p>
         <p className="fs-5">
-          {"Rating "+ parseFloat(rating)+ "  "}
+          {"Rating "+ parseFloat(rating.toFixed(2))+ "     "}
           {[
-            Array(Math.floor(rating))
+            Array(Math.round(rating))
               .fill()
               .map(() => {
                 return (
-                  <FaStar size={18} key={uuidv4()} style={{ color: "gold" }} />
+                  <FaStar size={20} key={uuidv4()} style={{ color: "gold" }} />
                 );
               }),
           ]}

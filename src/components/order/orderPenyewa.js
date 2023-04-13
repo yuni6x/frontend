@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { rupiah } from "../../utils/apis";
 import StarRating from "./starRating";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function OrderPenyewa({ orders, giveRating, confirm, notConfirm }) {
   return (
@@ -58,11 +59,19 @@ function OrderPenyewa({ orders, giveRating, confirm, notConfirm }) {
                   <>
                     <h3>
                       Rating: {order.rating}
-                      {
-                        <FaStar
-                          style={{ color: "gold", marginBottom: "5px" }}
-                        />
-                      }
+                      {[
+                        Array(order.rating)
+                          .fill()
+                          .map(() => {
+                            return (
+                              <FaStar
+                                size={20}
+                                key={uuidv4()}
+                                style={{ color: "gold" }}
+                              />
+                            );
+                          }),
+                      ]}
                     </h3>
                     <div className="border border-dark rounded">
                       {order.imageReview ? (

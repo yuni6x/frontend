@@ -251,16 +251,22 @@ nav>ul>li {
   border-radius: 50%;
 }
 
-.waiting-list-order, .on-progress-order{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
 .waiting-list-order__card, .on-progress-order__card{
   display: flex;
+  flex-direction: row;
   border: 1px solid black;
-  padding: 10px;
+  padding: 15px;
+  margin: 15px;
+}
+
+.on-progress-order__card__body, .waiting-list-order__card__body{
+  margin-right: 50px;
+}
+
+.on-progress-order__card__footer, .waiting-list-order__card__footer{
+  border-left: 1px solid black;
+  padding: 15px;
+  flex: 1;
 }
 
 .waiting-list-order button{

@@ -42,15 +42,12 @@ function DetailPage({ logout }) {
         if (isTokenExpired(error)) logout();
       } else {
         console.log(data)
-        setOrder(data);
+        setOrder(data.filter((d) => d.status === 'confirmed done'))
       }
       setLoad(false);
     });
   }, [id, logout]);
 
-  const isPenyewa = (role) => {
-    return role === "Penyewa" ? true : false;
-  };
 
   if (load) {
     return (
