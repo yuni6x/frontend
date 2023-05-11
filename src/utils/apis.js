@@ -1,6 +1,6 @@
 // const BASE_URL = 'https://api.findidealworker.my.id';
 // const BASE_URL = 'http://34.101.86.80';
-const BASE_URL = 'http://localhost:3005';
+const BASE_URL = 'https://backend-dot-analog-pilot-381004.as.r.appspot.com';
 
 function getAccessToken() {
   return localStorage.getItem('accessToken');
